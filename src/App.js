@@ -1,10 +1,10 @@
-import logo from './logo.svg';
+import TTT from './components/TTT'
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <h1>React App</h1>
+      <TTT/>
     </div>
   );
 }
