@@ -17,6 +17,9 @@ const [winner, setWinner] = useState('')
 const [turn, setTurn] = useState(0)
 const [gameOver, setGameOver] = useState(false)
 
+const [xWins, setXWins] = useState(0)
+const [oWins, setOwins] = useState(0)
+
 const [flash, setFlash] = useState(false)
 
 const resetState = () => {
@@ -100,6 +103,7 @@ const checkForWinner = () => {
     return null;
   }
 
+
   const handleFlash = () => {
     setFlash(true)
     setTimeout(() => {
@@ -125,35 +129,98 @@ const checkForWinner = () => {
         }
       }, [gameOver]);
 
-      console.log(flash)
+        useEffect(() => {
+            if (winner === 'X') {
+                setXWins(xWins + 1)
+            } else if (winner === 'O') {
+                setOwins(oWins + 1)
+            }
+        }, [winner])
+
 
   return (
     <>
-    <h1 className='ttt-title' >Tic Tac Toe</h1>
-    {!winner && !gameOver ? <h2 className= {flash ? "flashing-text ttt-banner" : 'ttt-banner' } >Player {player}'s turn</h2> : null }
-    <h2 className= {flash ? "flashing-text ttt-banner" : 'ttt-banner' } >{winner && turn !== 0 ? `Player ${winner} wins!` : null}</h2>
-    <h2 className= {flash ? "flashing-text ttt-banner" : 'ttt-banner' } >{gameOver && !winner ? 'Game Over' : null}</h2>
-    <div class="game">
-  <div class="board">
-    <div class="row">
-      <div className={one === "X" ? 'cell red' : 'cell'} onClick={() => {handleFlash(); handleClick(1);}} data-cell>{one}</div>
-      <div className={two === "X" ? 'cell red' : 'cell'} onClick={() => {handleFlash(); handleClick(2);}} data-cell>{two}</div>
-      <div className={three === "X" ? 'cell red' : 'cell'} onClick={() => {handleFlash(); handleClick(3);}} data-cell>{three}</div>
+    <div className='ttt-title'>
+        <h3 className='wins red'>X wins: {xWins}</h3>
+        <h1>Tic Tac Toe</h1>
+        <h3 className='wins'>O wins: {oWins}</h3>   
     </div>
-    <div class="row">
-      <div className={four === "X" ? 'cell red' : 'cell'} onClick={() => {handleFlash(); handleClick(4);}} data-cell>{four}</div>
-      <div className={five === "X" ? 'cell red' : 'cell'} onClick={() => {handleFlash(); handleClick(5);}} data-cell>{five}</div>
-      <div className={six === "X" ? 'cell red' : 'cell'} onClick={() => {handleFlash(); handleClick(6);}} data-cell>{six}</div>
+
+    {!winner && !gameOver ?
+    <h2 className= {flash ? "flashing-text ttt-banner" : 'ttt-banner'}>
+        Player {player}'s turn
+    </h2> :
+    null }
+
+    <h2 className= {flash ? "flashing-text ttt-banner" : 'ttt-banner'}>
+        {winner && turn !== 0 ? `Player ${winner} wins!` : null}
+    </h2>
+
+    <h2 className= {flash ? "flashing-text ttt-banner" : 'ttt-banner'}>
+        {gameOver && !winner ? 'Game Over' : null}
+    </h2>
+
+    <div className="game">
+
+        <div className="board">
+            <div className="row">
+            <div
+                className={one === "X" ? 'cell red' : 'cell'} 
+                onClick={() => {handleFlash(); handleClick(1);}}
+                data-cell>{one}
+            </div>
+            <div 
+                className={two === "X" ? 'cell red' : 'cell'} 
+                onClick={() => {handleFlash(); handleClick(2);}} 
+                data-cell>{two}
+            </div>
+            <div 
+                className={three === "X" ? 'cell red' : 'cell'} 
+                onClick={() => {handleFlash(); handleClick(3);}} 
+                data-cell>{three}
+            </div>
+        </div>
+
+        <div className="row">
+            <div 
+                className={four === "X" ? 'cell red' : 'cell'} 
+                onClick={() => {handleFlash(); handleClick(4);}} 
+                data-cell>{four}
+            </div>
+            <div 
+                className={five === "X" ? 'cell red' : 'cell'} 
+                onClick={() => {handleFlash(); handleClick(5);}} 
+                data-cell>{five}
+            </div>
+            <div 
+                className={six === "X" ? 'cell red' : 'cell'} 
+                onClick={() => {handleFlash(); handleClick(6);}} 
+                data-cell>{six}
+            </div>
+        </div>
+
+        <div className="row">
+            <div 
+                className={seven === "X" ? 'cell red' : 'cell'} 
+                onClick={() => {handleFlash(); handleClick(7);}} 
+                data-cell>{seven}
+            </div>
+            <div 
+                className={eight === "X" ? 'cell red' : 'cell'} 
+                onClick={() => {handleFlash(); handleClick(8);}} 
+                data-cell>{eight}
+            </div>
+            <div 
+                className={nine === "X" ? 'cell red' : 'cell'} 
+                onClick={() => {handleFlash(); handleClick(9);}} 
+                data-cell>{nine}
+            </div>
+        </div>
     </div>
-    <div class="row">
-      <div className={seven === "X" ? 'cell red' : 'cell'} onClick={() => {handleFlash(); handleClick(7);}} data-cell>{seven}</div>
-      <div className={eight === "X" ? 'cell red' : 'cell'} onClick={() => {handleFlash(); handleClick(8);}} data-cell>{eight}</div>
-      <div className={nine === "X" ? 'cell red' : 'cell'} onClick={() => {handleFlash(); handleClick(9);}} data-cell>{nine}</div>
-    </div>
-  </div>
+
 </div>
 </>
-  )
+)
 }
 
 export default TTT
