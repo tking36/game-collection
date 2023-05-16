@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
+import NavBar from './NavBar';
 
 const TTT = () => {
 const [one, setOne] = useState('')
@@ -139,7 +140,8 @@ const checkForWinner = () => {
 
 
   return (
-    <>
+<div className='ttt'>
+    <NavBar/>
     <div className='ttt-title'>
         <h3 className='wins red'>X wins: {xWins}</h3>
         <h1>Tic Tac Toe</h1>
@@ -219,7 +221,7 @@ const checkForWinner = () => {
     </div>
 
 </div>
-</>
+</div>
 )
 }
 

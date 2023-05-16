@@ -5,13 +5,28 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(to right, red 50%, blue 50%);
-
+  background-color: blue;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.home-title{
+  text-align: center;
+  margin-top: 2rem;
+  color: white;
+  background: linear-gradient(to right, red 50%, black 50%);
+  padding: 5px;
+}
+
+.game-list{
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  color: white;
+  background-color: black;
 }
 
 .ttt-title{
@@ -29,6 +44,11 @@ code {
   color: white;
   text-shadow: 5px 5px 5px black;
   font-size: 2rem;
+  text-align: center;
+}
+
+.ttt{
+  background: linear-gradient(to right, red 50%, blue 50%);
 }
 
 .game {
@@ -45,7 +65,8 @@ code {
   flex-direction: column;
   background-color: white;
   border: 2px solid black;
-  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .row {
@@ -63,6 +84,7 @@ code {
   cursor: pointer;
   color: blue;
 }
+
 
 .red{
   color: red !important;
