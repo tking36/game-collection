@@ -29,6 +29,8 @@ code {
   background-color: black;
 }
 
+/*ttt ttt ttt ttt ttt ttt ttt ttt ttt ttt ttt ttt ttt */
+
 .ttt-title{
   background-color: black;
   color: white;
@@ -136,4 +138,18 @@ code {
     opacity: 0;
   }
 }
+
+/*ttt ttt ttt ttt ttt ttt ttt ttt ttt ttt ttt ttt ttt */
+
+/*ml ml ml ml ml ml ml ml ml ml ml ml ml ml ml ml ml */
+
+.ml-title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto 0;
+}
+
+/*ml ml ml ml ml ml ml ml ml ml ml ml ml ml ml ml ml */
+
 
