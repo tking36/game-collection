@@ -29,6 +29,7 @@ code {
   background-color: black;
 }
 
+
 /*ttt ttt ttt ttt ttt ttt ttt ttt ttt ttt ttt ttt ttt */
 
 .ttt-title{
@@ -143,11 +144,50 @@ code {
 
 /*ml ml ml ml ml ml ml ml ml ml ml ml ml ml ml ml ml */
 
+
+
 .ml-title{
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: auto 0;
+  margin-bottom: 100px;
+}
+
+.ml-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center; 
+}
+
+.prompt-type{
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.ml-story{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center; 
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.ml-p{
+  font-size: 20px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  background-color: red;
+  width: 80%;
+}
+
+.ml-reset{
+  margin-top: 20px;
 }
 
 /*ml ml ml ml ml ml ml ml ml ml ml ml ml ml ml ml ml */
