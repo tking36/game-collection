@@ -13,30 +13,27 @@ const MadLib = () => {
         const newNouns = [...nouns];
         newNouns[index] = e.target.value;
         setNouns(newNouns);
-        console.log(nouns);
-        updateStories();
+        updateStories(newNouns, adjectives, verbs);
     };
     
     const handleAdjectiveChange = (e, index) => {
         const newAdjectives = [...adjectives];
         newAdjectives[index] = e.target.value;
         setAdjectives(newAdjectives);
-        console.log(adjectives);
-        updateStories();
+        updateStories(nouns, newAdjectives, verbs);
     };
     
     const handleVerbChange = (e, index) => {
         const newVerbs = [...verbs];
         newVerbs[index] = e.target.value;
         setVerbs(newVerbs);
-        console.log(verbs);
-        updateStories();
+        updateStories(nouns, adjectives, newVerbs);
     };
     
-    const updateStories = () => {
+    const updateStories = (newNouns, newAdjectives, newVerbs) => {
         const newStories = [
             [
-                `Once upon a time, there was a ${nouns[0]} who wanted to ${verbs[0]} a ${nouns[1]}.`,
+                `Once upon a time, there was a ${nouns[0]} who wanted to ${verbs[0]} the ${nouns[1]}.`,
                 `The ${nouns[0]} was very ${adjectives[0]} and ${adjectives[1]}.`,
                 `The ${nouns[0]} tried to ${verbs[1]} the ${nouns[1]} and ${verbs[2]} the ${nouns[1]}.`,
                 `The ${nouns[1]} was very ${adjectives[2]} and ${adjectives[0]}.`,
@@ -60,8 +57,8 @@ const MadLib = () => {
     };
 
     useEffect(() => {
-        updateStories();
-    }, []);
+        updateStories(nouns, adjectives, verbs);
+    }, [nouns, adjectives, verbs]);
     
     
 
@@ -72,19 +69,25 @@ const MadLib = () => {
 
             {prompt ?
                 <div className='ml-prompt'>
-                    <h3 className='prompt-type' >Enter 3 nouns</h3>
-                    {Array.from({ length: 3 }).map((_, index) => (
-                        <input key={index} onChange={(e) => handleNounChange(e, index)} />
-                    ))}
-                    <h3 className='prompt-type' >Enter 3 adjectives</h3>
-                    {Array.from({ length: 3 }).map((_, index) => (
-                        <input key={index} onChange={(e) => handleAdjectiveChange(e, index)} />
-                    ))}
-                    <h3 className='prompt-type' >Enter 3 verbs</h3>
-                    {Array.from({ length: 3 }).map((_, index) => (
-                        <input key={index} onChange={(e) => handleVerbChange(e, index)} />
-                    ))}
-                    <button onClick={() => setPrompt(false)}>Submit</button>
+                    <div className='ml-prompt-cont'>
+                        <h3 className='prompt-type' >Enter 3 Nouns</h3>
+                        {Array.from({ length: 3 }).map((_, index) => (
+                            <input className='ml-input' key={index} onChange={(e) => handleNounChange(e, index)} />
+                        ))}
+                    </div>
+                    <div className='ml-prompt-cont'>
+                        <h3 className='prompt-type' >Enter 3 Adjectives</h3>
+                        {Array.from({ length: 3 }).map((_, index) => (
+                            <input className='ml-input' key={index} onChange={(e) => handleAdjectiveChange(e, index)} />
+                        ))}
+                    </div>
+                    <div className='ml-prompt-cont'>
+                        <h3 className='prompt-type' >Enter 3 Verbs</h3>
+                        {Array.from({ length: 3 }).map((_, index) => (
+                            <input className='ml-input' key={index} onChange={(e) => handleVerbChange(e, index)} />
+                        ))}
+                    </div>
+                    <button className='ml-submit' onClick={() => setPrompt(false)}>Submit</button>
                 </div>
                 :
                 null}
