@@ -228,4 +228,54 @@ code {
 
 /*ml ml ml ml ml ml ml ml ml ml ml ml ml ml ml ml ml */
 
+/* wordle worlde wordle wordle wordle wordle wordle wordle */
+
+.wordle-title{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 100px;
+  background-color: black;
+  color: white;
+}
+
+.wordle-input-cont{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center; 
+  margin-top: 30px;
+  margin-bottom: 10px;
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+  padding: 10px;
+}
+
+.wordle-input-group{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center; 
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+  padding: 10px;
+}
+
+.wordle-input{
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 50px;
+  height: 50px;
+}
+
+/* wordle worlde wordle wordle wordle wordle wordle wordle */
+
+
 

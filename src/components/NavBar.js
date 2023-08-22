@@ -16,6 +16,7 @@ const NavBar = () => {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/ttt">TTT</Nav.Link>
             <Nav.Link href='/ml'>Mad Libs</Nav.Link>
+            <Nav.Link href='/wordle'>Wordle</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
