@@ -275,6 +275,24 @@ code {
   height: 50px;
 }
 
+.wordle-input-disabled{
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 50px;
+  height: 50px;
+  color: transparent;
+}
+
+.input-answer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.wordle-guess{
+  margin-right: 40px;
+}
+
 /* wordle worlde wordle wordle wordle wordle wordle wordle */
 
 

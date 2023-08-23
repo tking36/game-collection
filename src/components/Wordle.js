@@ -5,7 +5,8 @@ import NavBar from './NavBar';
 const Wordle = () => {
     const [tryCount , setTryCount] = useState(0)
     const [currentWord, setCurrentWord] = useState('')
-    const [guess, setGuess] = useState('')
+    const [guess, setGuess] = useState([])
+    const [guesses, setGuesses] = useState([])
 
     const words = [
         "QUART", "COYLY", "YOUTH", "RHYME", "BUGGY", "ALIEN", "SMEAR", "UNFIT", "PATTY", "CLING",
@@ -35,10 +36,40 @@ const Wordle = () => {
         }
     }
 
+    const resetGuess = () => {
+        setGuess([])
+    }
+
     const randomWord = () => {
         let random = Math.floor(Math.random() * words.length)
         setCurrentWord(words[random])
     }
+
+    const pushGuess = () => {
+        setGuesses([...guesses, guess]);
+        resetGuess(); // Add this line to reset the guess state
+    };
+    
+    
+
+    const guessHandler = (event) => {
+        event.preventDefault();
+        // pushGuess();
+        resetGuess();
+    };
+    
+      const inputChangeHandler = (index, value) => {
+        const updatedGuess = [...guess];
+        updatedGuess[index] = value;
+        setGuess(updatedGuess.join(''));
+      };
+
+      const logger = () => {
+            console.log(guess)
+            console.log(guesses)
+        }
+
+    
     
 
   return (
@@ -51,208 +82,150 @@ const Wordle = () => {
             <div className='wordle-input-cont'>
                 <div className='wordle-info'>
                     <h3 className='wordle-subtitle'>Guesses: {tryCount}/6</h3>
-                    <button className='worlde-submit' onClick={countIncrease} >Submit</button>
+                    <button onClick={logger}>Log</button>
                 </div>
 
                 <div className='worlde-all-groups'>
 
-                    <div className='wordle-input-group'>
-
-                        <input className='wordle-input' 
-                        type='text' placeholder='' 
-                        disabled={tryCount === 0 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 0 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 0 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 0 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 0 ? false : true}>
-                        </input>
-
-                    </div>
-
-                    <div className='wordle-input-group'>
-
-                        <input className='wordle-input' 
-                        type='text' placeholder='' 
-                        disabled={tryCount === 1 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 1 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 1 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 1 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 1 ? false : true}>
-                        </input>
-
-                    </div>
-
-                <div className='wordle-input-group'>
-
-                        <input className='wordle-input' 
-                        type='text' placeholder='' 
-                        disabled={tryCount === 2 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 2 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 2 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 2 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 2 ? false : true}>
-                        </input>
-
+                <div className='input-answer' >
+                    <h1 className='wordle-guess' >
+                        {guesses.length > 0 ? 
+                        guesses[0].split('').map((letter, index) => (
+                            <span key={index} className='wordle-letter'>{letter}</span>
+                        )) : ' '} 
+                    </h1>
+                <form onSubmit={guessHandler} className='wordle-input-group'>
+                    {Array.from({ length: 5 }, (_, index) => (
+                    <input
+                    key={index}
+                    className={tryCount === 0 ? 'wordle-input' : 'wordle-input-disabled'}
+                    type='text'
+                    placeholder=''
+                    value={tryCount === 0 ? guess[index] : ''}
+                    onChange={(event) => inputChangeHandler(index, event.target.value)}
+                    disabled={tryCount === 0 ? false : true}
+                    />
+                    ))}
+                    <button onClick={() => { countIncrease(); pushGuess(); }} type="submit">Submit</button>
+                </form>
                 </div>
 
-                <div className='wordle-input-group'>
-
-                        <input className='wordle-input' 
-                        type='text' placeholder='' 
-                        disabled={tryCount === 3 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 3 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 3 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 3 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 3 ? false : true}>
-                        </input>
-
+                <div className='input-answer' >
+                    <h1 className='wordle-guess' >
+                        {guesses.length > 1 ? 
+                        guesses[1].split('').map((letter, index) => (
+                            <span key={index} className='wordle-letter'>{letter}</span>
+                        )) : ' '} 
+                    </h1>
+                <form onSubmit={guessHandler} className='wordle-input-group'>
+                    {Array.from({ length: 5 }, (_, index) => (
+                    <input
+                    key={index}
+                    className={tryCount === 1 ? 'wordle-input' : 'wordle-input-disabled'}
+                    type='text'
+                    placeholder=''
+                    value={tryCount === 1 ? guess[index] : ''}
+                    onChange={(event) => inputChangeHandler(index, event.target.value)}
+                    disabled={tryCount === 1 ? false : true}
+                    />
+                    ))}
+                    <button onClick={() => { countIncrease(); pushGuess(); }} type="submit">Submit</button>
+                </form>
                 </div>
 
-                <div className='wordle-input-group'>
-
-                        <input className='wordle-input' 
-                        type='text' placeholder='' 
-                        disabled={tryCount === 4 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 4 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 4 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 4 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 4 ? false : true}>
-                        </input>
-
+                <div className='input-answer' >
+                    <h1 className='wordle-guess' >
+                        {guesses.length > 2 ? 
+                        guesses[2].split('').map((letter, index) => (
+                            <span key={index} className='wordle-letter'>{letter}</span>
+                        )) : ' '} 
+                    </h1>
+                <form onSubmit={guessHandler} className='wordle-input-group'>
+                    {Array.from({ length: 5 }, (_, index) => (
+                    <input
+                    key={index}
+                    className={tryCount === 2 ? 'wordle-input' : 'wordle-input-disabled'}
+                    type='text'
+                    placeholder=''
+                    value={tryCount === 2 ? guess[index] : ''}
+                    onChange={(event) => inputChangeHandler(index, event.target.value)}
+                    disabled={tryCount === 2 ? false : true}
+                    />
+                    ))}
+                    <button onClick={() => { countIncrease(); pushGuess(); }} type="submit">Submit</button>
+                </form>
                 </div>
 
-                <div className='wordle-input-group'>
-
-                    <input className='wordle-input' 
-                        type='text' placeholder='' 
-                        disabled={tryCount === 5 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 5 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 5 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 5 ? false : true}>
-                        </input>
-
-                        <input className='wordle-input' 
-                        type='text' 
-                        placeholder='' 
-                        disabled={tryCount === 5 ? false : true}>
-                        </input>
-
+                <div className='input-answer' >
+                    <h1 className='wordle-guess' >
+                        {guesses.length > 3 ? 
+                        guesses[3].split('').map((letter, index) => (
+                            <span key={index} className='wordle-letter'>{letter}</span>
+                        )) : ' '} 
+                    </h1>
+                <form onSubmit={guessHandler} className='wordle-input-group'>
+                    {Array.from({ length: 5 }, (_, index) => (
+                    <input
+                    key={index}
+                    className={tryCount === 3 ? 'wordle-input' : 'wordle-input-disabled'}
+                    type='text'
+                    placeholder=''
+                    value={tryCount === 3 ? guess[index] : ''}
+                    onChange={(event) => inputChangeHandler(index, event.target.value)}
+                    disabled={tryCount === 3 ? false : true}
+                    />
+                    ))}
+                    <button onClick={() => { countIncrease(); pushGuess(); }} type="submit">Submit</button>
+                </form>
                 </div>
+
+                <div className='input-answer' >
+                    <h1 className='wordle-guess' >
+                        {guesses.length > 4 ? 
+                        guesses[4].split('').map((letter, index) => (
+                            <span key={index} className='wordle-letter'>{letter}</span>
+                        )) : ' '} 
+                    </h1>
+                <form onSubmit={guessHandler} className='wordle-input-group'>
+                    {Array.from({ length: 5 }, (_, index) => (
+                    <input
+                    key={index}
+                    className={tryCount === 4 ? 'wordle-input' : 'wordle-input-disabled'}
+                    type='text'
+                    placeholder=''
+                    value={tryCount === 4 ? guess[index] : ''}
+                    onChange={(event) => inputChangeHandler(index, event.target.value)}
+                    disabled={tryCount === 4 ? false : true}
+                    />
+                    ))}
+                    <button onClick={() => { countIncrease(); pushGuess(); }} type="submit">Submit</button>
+                </form>
+                </div>
+
+                <div className='input-answer' >
+                    <h1 className='wordle-guess' >
+                        {guesses.length > 5 ? 
+                        guesses[5].split('').map((letter, index) => (
+                            <span key={index} className='wordle-letter'>{letter}</span>
+                        )) : ' '} 
+                    </h1>
+                <form onSubmit={guessHandler} className='wordle-input-group'>
+                    {Array.from({ length: 5 }, (_, index) => (
+                    <input
+                    key={index}
+                    className={tryCount === 5 ? 'wordle-input' : 'wordle-input-disabled'}
+                    type='text'
+                    placeholder=''
+                    value={tryCount === 5 ? guess[index] : ''}
+                    onChange={(event) => inputChangeHandler(index, event.target.value)}
+                    disabled={tryCount === 5 ? false : true}
+                    />
+                    ))}
+                    <button onClick={() => { countIncrease(); pushGuess(); }} type="submit">Submit</button>
+                </form>
+                </div>
+
+                    
                 </div>
             </div>
         </div>
