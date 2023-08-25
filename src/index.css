@@ -280,7 +280,9 @@ code {
   margin-right: 5px;
   width: 50px;
   height: 50px;
-  color: transparent;
+  /* color: transparent; */
+  /* background-color: #f0f0f0; */
+  /* cursor: not-allowed; */
 }
 
 .input-answer{
@@ -292,6 +294,26 @@ code {
 .wordle-guess{
   margin-right: 40px;
 }
+
+.wordle-input-correct{
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 50px;
+  height: 50px;
+  background-color: green;
+  color: black;
+}
+
+.wordle-input-partial{
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 50px;
+  height: 50px;
+  background-color: yellow;
+  color: black;
+}
+
+
 
 /* wordle worlde wordle wordle wordle wordle wordle wordle */
 

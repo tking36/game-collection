@@ -7,6 +7,7 @@ const Wordle = () => {
     const [currentWord, setCurrentWord] = useState('')
     const [guess, setGuess] = useState([])
     const [guesses, setGuesses] = useState([])
+    const [wordProgress, setWordProgress] = useState([[false, false, false, false, false],[false, false, false, false, false],[false, false, false, false, false],[false, false, false, false, false],[false, false, false, false, false]])
 
     const words = [
         "QUART", "COYLY", "YOUTH", "RHYME", "BUGGY", "ALIEN", "SMEAR", "UNFIT", "PATTY", "CLING",
@@ -25,9 +26,9 @@ const Wordle = () => {
         "BRAID", "KNOCK", "NAIVE", "APPLY", "SPOKE", "USUAL", "RIVAL", "PROBE"
       ];
       
-    useEffect(() => {
-        randomWord()
-    }, [])
+
+
+    let split = currentWord.split('')
       
 
     const countIncrease = () => {
@@ -58,16 +59,91 @@ const Wordle = () => {
         resetGuess();
     };
     
-      const inputChangeHandler = (index, value) => {
+    const inputChangeHandler = (index, value) => {
         const updatedGuess = [...guess];
         updatedGuess[index] = value;
         setGuess(updatedGuess.join(''));
-      };
+    
+        if (value.length === 1 && index < inputRefs.length - 1) {
+            inputRefs[index + 1].current.focus();
+        }
+    };
+    
 
       const logger = () => {
             console.log(guess)
             console.log(guesses)
+            console.log(currentWord)
+            console.log(wordProgress)
         }
+
+    const inputRefs = Array.from({ length: 5 }, () => React.createRef());
+
+    useEffect(() => {
+        randomWord()
+    }, [])
+
+
+    if(tryCount === 0 && guess.length === 5) {
+        for(let i = 0; i < 5; i++) {
+            if (split[i] === guess[i].toUpperCase()) {
+                wordProgress[0][i] =(true)
+            } else if (split.includes(guess[i].toUpperCase())) {
+                    wordProgress[0][i] = 1
+            }
+        }
+    }
+
+    if(tryCount === 1 && guess.length === 5) {
+        for(let i = 0; i < 5; i++) {
+            if (split[i] === guess[i].toUpperCase()) {
+                wordProgress[1][i] =(true)
+            } else if (split.includes(guess[i].toUpperCase())) {
+                    wordProgress[1][i] = 1
+            }
+        }
+    }
+
+    if(tryCount === 2 && guess.length === 5) {
+        for(let i = 0; i < 5; i++) {
+            if (split[i] === guess[i].toUpperCase()) {
+                wordProgress[2][i] =(true)
+            } else if (split.includes(guess[i].toUpperCase())) {
+                    wordProgress[2][i] = 1
+            }
+        }
+    }
+
+    if(tryCount === 3 && guess.length === 5) {
+        for(let i = 0; i < 5; i++) {
+            if (split[i] === guess[i].toUpperCase()) {
+                wordProgress[3][i] =(true)
+            } else if (split.includes(guess[i].toUpperCase())) {
+                    wordProgress[3][i] = 1
+            }
+        }
+    }
+
+    if(tryCount === 4 && guess.length === 5) {
+        for(let i = 0; i < 5; i++) {
+            if (split[i] === guess[i].toUpperCase()) {
+                wordProgress[4][i] =(true)
+            } else if (split.includes(guess[i].toUpperCase())) {
+                    wordProgress[4][i] = 1
+            }
+        }
+    }
+
+    if(tryCount === 5 && guess.length === 5) {
+        for(let i = 0; i < 5; i++) {
+            if (split[i] === guess[i].toUpperCase()) {
+                wordProgress[5][i] =(true)
+            } else if (split.includes(guess[i].toUpperCase())) {
+                    wordProgress[5][i] = 1
+            }
+        }
+    }
+
 
     
     
@@ -94,16 +170,26 @@ const Wordle = () => {
                             <span key={index} className='wordle-letter'>{letter}</span>
                         )) : ' '} 
                     </h1>
+
                 <form onSubmit={guessHandler} className='wordle-input-group'>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
+                    ref={inputRefs[index]}
+                    maxLength={1}
                     key={index}
-                    className={tryCount === 0 ? 'wordle-input' : 'wordle-input-disabled'}
+                    className={
+                        tryCount > 0
+                            ? wordProgress[0][index] === true
+                                ? 'wordle-input-correct'
+                                : wordProgress[0][index] === 1
+                                ? 'wordle-input-partial'
+                                : 'wordle-input'
+                            : 'wordle-input-disabled'
+                    }
                     type='text'
                     placeholder=''
-                    value={tryCount === 0 ? guess[index] : ''}
+                    value={tryCount > 0 ? guesses[0][index] : guess[index]}
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
-                    disabled={tryCount === 0 ? false : true}
                     />
                     ))}
                     <button onClick={() => { countIncrease(); pushGuess(); }} type="submit">Submit</button>
@@ -120,13 +206,22 @@ const Wordle = () => {
                 <form onSubmit={guessHandler} className='wordle-input-group'>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
+                    ref={inputRefs[index]}
+                    maxLength={1}
                     key={index}
-                    className={tryCount === 1 ? 'wordle-input' : 'wordle-input-disabled'}
+                    className={
+                        tryCount > 1
+                            ? wordProgress[1][index] === true
+                                ? 'wordle-input-correct'
+                                : wordProgress[1][index] === 1
+                                ? 'wordle-input-partial'
+                                : 'wordle-input'
+                            : 'wordle-input-disabled'
+                    }
                     type='text'
                     placeholder=''
-                    value={tryCount === 1 ? guess[index] : ''}
+                    value={tryCount > 1 ? guesses[1][index] : guess[index]}
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
-                    disabled={tryCount === 1 ? false : true}
                     />
                     ))}
                     <button onClick={() => { countIncrease(); pushGuess(); }} type="submit">Submit</button>
@@ -143,13 +238,22 @@ const Wordle = () => {
                 <form onSubmit={guessHandler} className='wordle-input-group'>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
+                    ref={inputRefs[index]}
+                    maxLength={1}
                     key={index}
-                    className={tryCount === 2 ? 'wordle-input' : 'wordle-input-disabled'}
+                    className={
+                        tryCount > 2
+                            ? wordProgress[2][index] === true
+                                ? 'wordle-input-correct'
+                                : wordProgress[2][index] === 1
+                                ? 'wordle-input-partial'
+                                : 'wordle-input'
+                            : 'wordle-input-disabled'
+                    }
                     type='text'
                     placeholder=''
-                    value={tryCount === 2 ? guess[index] : ''}
+                    value={tryCount > 2 ? guesses[2][index] : guess[index]}
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
-                    disabled={tryCount === 2 ? false : true}
                     />
                     ))}
                     <button onClick={() => { countIncrease(); pushGuess(); }} type="submit">Submit</button>
@@ -166,13 +270,22 @@ const Wordle = () => {
                 <form onSubmit={guessHandler} className='wordle-input-group'>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
+                    ref={inputRefs[index]}
+                    maxLength={1}
                     key={index}
-                    className={tryCount === 3 ? 'wordle-input' : 'wordle-input-disabled'}
+                    className={
+                        tryCount > 4
+                            ? wordProgress[4][index] === true
+                                ? 'wordle-input-correct'
+                                : wordProgress[4][index] === 1
+                                ? 'wordle-input-partial'
+                                : 'wordle-input'
+                            : 'wordle-input-disabled'
+                    }
                     type='text'
                     placeholder=''
-                    value={tryCount === 3 ? guess[index] : ''}
+                    value={tryCount > 3 ? guesses[3][index] : guess[index]}
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
-                    disabled={tryCount === 3 ? false : true}
                     />
                     ))}
                     <button onClick={() => { countIncrease(); pushGuess(); }} type="submit">Submit</button>
@@ -189,13 +302,22 @@ const Wordle = () => {
                 <form onSubmit={guessHandler} className='wordle-input-group'>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
+                    ref={inputRefs[index]}
+                    maxLength={1}
                     key={index}
-                    className={tryCount === 4 ? 'wordle-input' : 'wordle-input-disabled'}
+                    className={
+                        tryCount > 5
+                            ? wordProgress[5][index] === true
+                                ? 'wordle-input-correct'
+                                : wordProgress[5][index] === 1
+                                ? 'wordle-input-partial'
+                                : 'wordle-input'
+                            : 'wordle-input-disabled'
+                    }
                     type='text'
                     placeholder=''
-                    value={tryCount === 4 ? guess[index] : ''}
+                    value={tryCount > 4 ? guesses[4][index] : guess[index]}
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
-                    disabled={tryCount === 4 ? false : true}
                     />
                     ))}
                     <button onClick={() => { countIncrease(); pushGuess(); }} type="submit">Submit</button>
@@ -212,13 +334,22 @@ const Wordle = () => {
                 <form onSubmit={guessHandler} className='wordle-input-group'>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
+                    ref={inputRefs[index]}
+                    maxLength={1}
                     key={index}
-                    className={tryCount === 5 ? 'wordle-input' : 'wordle-input-disabled'}
+                    className={
+                        tryCount > 6
+                            ? wordProgress[6][index] === true
+                                ? 'wordle-input-correct'
+                                : wordProgress[6][index] === 1
+                                ? 'wordle-input-partial'
+                                : 'wordle-input'
+                            : 'wordle-input-disabled'
+                    }
                     type='text'
                     placeholder=''
-                    value={tryCount === 5 ? guess[index] : ''}
+                    value={tryCount > 5 ? guesses[5][index] : guess[index]}
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
-                    disabled={tryCount === 5 ? false : true}
                     />
                     ))}
                     <button onClick={() => { countIncrease(); pushGuess(); }} type="submit">Submit</button>
