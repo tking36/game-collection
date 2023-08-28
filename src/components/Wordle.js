@@ -7,7 +7,8 @@ const Wordle = () => {
     const [currentWord, setCurrentWord] = useState('')
     const [guess, setGuess] = useState([])
     const [guesses, setGuesses] = useState([])
-    const [wordProgress, setWordProgress] = useState([[false, false, false, false, false],[false, false, false, false, false],[false, false, false, false, false],[false, false, false, false, false],[false, false, false, false, false]])
+    const initialProgress = Array.from({ length: 6 }, () => Array.from({ length: 5 }, () => false));
+const [wordProgress, setWordProgress] = useState(initialProgress);
 
     const words = [
         "QUART", "COYLY", "YOUTH", "RHYME", "BUGGY", "ALIEN", "SMEAR", "UNFIT", "PATTY", "CLING",
@@ -64,10 +65,11 @@ const Wordle = () => {
         updatedGuess[index] = value;
         setGuess(updatedGuess.join(''));
     
-        if (value.length === 1 && index < inputRefs.length - 1) {
-            inputRefs[index + 1].current.focus();
-        }
+        // if (value.length === 1 && index < inputRefs.length - 1) {
+        //     inputRefs[index + 1].current.focus();
+        // }
     };
+      
     
 
       const logger = () => {
@@ -84,65 +86,117 @@ const Wordle = () => {
     }, [])
 
 
-    if(tryCount === 0 && guess.length === 5) {
-        for(let i = 0; i < 5; i++) {
+    if (tryCount === 0 && guess.length === 5) {
+        for (let i = 0; i < 5; i++) {
             if (split[i] === guess[i].toUpperCase()) {
-                wordProgress[0][i] =(true)
+                wordProgress[tryCount][i] = true;
             } else if (split.includes(guess[i].toUpperCase())) {
-                    wordProgress[0][i] = 1
+                wordProgress[tryCount][i] = 1;
             }
         }
     }
 
-    if(tryCount === 1 && guess.length === 5) {
-        for(let i = 0; i < 5; i++) {
+    if (tryCount === 1 && guess.length === 5) {
+        for (let i = 0; i < 5; i++) {
             if (split[i] === guess[i].toUpperCase()) {
-                wordProgress[1][i] =(true)
+                wordProgress[tryCount][i] = true;
             } else if (split.includes(guess[i].toUpperCase())) {
-                    wordProgress[1][i] = 1
+                wordProgress[tryCount][i] = 1;
             }
         }
     }
 
-    if(tryCount === 2 && guess.length === 5) {
-        for(let i = 0; i < 5; i++) {
+    if (tryCount === 2 && guess.length === 5) {
+        for (let i = 0; i < 5; i++) {
             if (split[i] === guess[i].toUpperCase()) {
-                wordProgress[2][i] =(true)
+                wordProgress[tryCount][i] = true;
             } else if (split.includes(guess[i].toUpperCase())) {
-                    wordProgress[2][i] = 1
+                wordProgress[tryCount][i] = 1;
             }
         }
     }
 
-    if(tryCount === 3 && guess.length === 5) {
-        for(let i = 0; i < 5; i++) {
+    if (tryCount === 3 && guess.length === 5) {
+        for (let i = 0; i < 5; i++) {
             if (split[i] === guess[i].toUpperCase()) {
-                wordProgress[3][i] =(true)
+                wordProgress[tryCount][i] = true;
             } else if (split.includes(guess[i].toUpperCase())) {
-                    wordProgress[3][i] = 1
+                wordProgress[tryCount][i] = 1;
             }
         }
     }
 
-    if(tryCount === 4 && guess.length === 5) {
-        for(let i = 0; i < 5; i++) {
+    if (tryCount === 4 && guess.length === 5) {
+        for (let i = 0; i < 5; i++) {
             if (split[i] === guess[i].toUpperCase()) {
-                wordProgress[4][i] =(true)
+                wordProgress[tryCount][i] = true;
             } else if (split.includes(guess[i].toUpperCase())) {
-                    wordProgress[4][i] = 1
+                wordProgress[tryCount][i] = 1;
             }
         }
     }
 
-    if(tryCount === 5 && guess.length === 5) {
-        for(let i = 0; i < 5; i++) {
+    if (tryCount === 5 && guess.length === 5) {
+        for (let i = 0; i < 5; i++) {
             if (split[i] === guess[i].toUpperCase()) {
-                wordProgress[5][i] =(true)
+                wordProgress[tryCount][i] = true;
             } else if (split.includes(guess[i].toUpperCase())) {
-                    wordProgress[5][i] = 1
+                wordProgress[tryCount][i] = 1;
             }
         }
     }
+    // Similar updates for other tryCount cases...
+    
+
+    // if(tryCount === 1 && guess.length === 5) {
+    //     for(let i = 0; i < 5; i++) {
+    //         if (split[i] === guess[i].toUpperCase()) {
+    //             wordProgress[1][i] =(true)
+    //         } else if (split.includes(guess[i].toUpperCase())) {
+    //                 wordProgress[1][i] = 1
+    //         }
+    //     }
+    // }
+
+    // if(tryCount === 2 && guess.length === 5) {
+    //     for(let i = 0; i < 5; i++) {
+    //         if (split[i] === guess[i].toUpperCase()) {
+    //             wordProgress[2][i] =(true)
+    //         } else if (split.includes(guess[i].toUpperCase())) {
+    //                 wordProgress[2][i] = 1
+    //         }
+    //     }
+    // }
+
+    // if(tryCount === 3 && guess.length === 5) {
+    //     for(let i = 0; i < 5; i++) {
+    //         if (split[i] === guess[i].toUpperCase()) {
+    //             wordProgress[3][i] =(true)
+    //         } else if (split.includes(guess[i].toUpperCase())) {
+    //                 wordProgress[3][i] = 1
+    //         }
+    //     }
+    // }
+
+    // if(tryCount === 4 && guess.length === 5) {
+    //     for(let i = 0; i < 5; i++) {
+    //         if (split[i] === guess[i].toUpperCase()) {
+    //             wordProgress[4][i] =(true)
+    //         } else if (split.includes(guess[i].toUpperCase())) {
+    //                 wordProgress[4][i] = 1
+    //         }
+    //     }
+    // }
+
+    // if(tryCount === 5 && guess.length === 5) {
+    //     for(let i = 0; i < 5; i++) {
+    //         if (split[i] === guess[i].toUpperCase()) {
+    //             wordProgress[5][i] =(true)
+    //         } else if (split.includes(guess[i].toUpperCase())) {
+    //                 wordProgress[5][i] = 1
+    //         }
+    //     }
+    // }
 
 
     
@@ -164,12 +218,12 @@ const Wordle = () => {
                 <div className='worlde-all-groups'>
 
                 <div className='input-answer' >
-                    <h1 className='wordle-guess' >
+                    {/* <h1 className='wordle-guess' >
                         {guesses.length > 0 ? 
                         guesses[0].split('').map((letter, index) => (
                             <span key={index} className='wordle-letter'>{letter}</span>
                         )) : ' '} 
-                    </h1>
+                    </h1> */}
 
                 <form onSubmit={guessHandler} className='wordle-input-group'>
                     {Array.from({ length: 5 }, (_, index) => (
@@ -188,7 +242,7 @@ const Wordle = () => {
                     }
                     type='text'
                     placeholder=''
-                    value={tryCount > 0 ? guesses[0][index] : guess[index]}
+                    // value={tryCount > 0 ? guesses[0][index] : guess[index]}
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
                     />
                     ))}
@@ -197,12 +251,12 @@ const Wordle = () => {
                 </div>
 
                 <div className='input-answer' >
-                    <h1 className='wordle-guess' >
+                    {/* <h1 className='wordle-guess' >
                         {guesses.length > 1 ? 
                         guesses[1].split('').map((letter, index) => (
                             <span key={index} className='wordle-letter'>{letter}</span>
                         )) : ' '} 
-                    </h1>
+                    </h1> */}
                 <form onSubmit={guessHandler} className='wordle-input-group'>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
@@ -220,7 +274,7 @@ const Wordle = () => {
                     }
                     type='text'
                     placeholder=''
-                    value={tryCount > 1 ? guesses[1][index] : guess[index]}
+                    // value={tryCount > 1 ? guesses[1][index] : guess[index]}
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
                     />
                     ))}
@@ -229,12 +283,12 @@ const Wordle = () => {
                 </div>
 
                 <div className='input-answer' >
-                    <h1 className='wordle-guess' >
+                    {/* <h1 className='wordle-guess' >
                         {guesses.length > 2 ? 
                         guesses[2].split('').map((letter, index) => (
                             <span key={index} className='wordle-letter'>{letter}</span>
                         )) : ' '} 
-                    </h1>
+                    </h1> */}
                 <form onSubmit={guessHandler} className='wordle-input-group'>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
@@ -252,7 +306,7 @@ const Wordle = () => {
                     }
                     type='text'
                     placeholder=''
-                    value={tryCount > 2 ? guesses[2][index] : guess[index]}
+                    // value={tryCount > 2 ? guesses[2][index] : guess[index]}
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
                     />
                     ))}
@@ -261,12 +315,44 @@ const Wordle = () => {
                 </div>
 
                 <div className='input-answer' >
-                    <h1 className='wordle-guess' >
+                    {/* <h1 className='wordle-guess' >
                         {guesses.length > 3 ? 
                         guesses[3].split('').map((letter, index) => (
                             <span key={index} className='wordle-letter'>{letter}</span>
                         )) : ' '} 
-                    </h1>
+                    </h1> */}
+                <form onSubmit={guessHandler} className='wordle-input-group'>
+                    {Array.from({ length: 5 }, (_, index) => (
+                    <input
+                    ref={inputRefs[index]}
+                    maxLength={1}
+                    key={index}
+                    className={
+                        tryCount > 3
+                            ? wordProgress[3][index] === true
+                                ? 'wordle-input-correct'
+                                : wordProgress[3][index] === 1
+                                ? 'wordle-input-partial'
+                                : 'wordle-input'
+                            : 'wordle-input-disabled'
+                    }
+                    type='text'
+                    placeholder=''
+                    // value={tryCount > 3 ? guesses[3][index] : guess[index]}
+                    onChange={(event) => inputChangeHandler(index, event.target.value)}
+                    />
+                    ))}
+                    <button onClick={() => { countIncrease(); pushGuess(); }} type="submit">Submit</button>
+                </form>
+                </div>
+
+                <div className='input-answer' >
+                    {/* <h1 className='wordle-guess' >
+                        {guesses.length > 4 ? 
+                        guesses[4].split('').map((letter, index) => (
+                            <span key={index} className='wordle-letter'>{letter}</span>
+                        )) : ' '} 
+                    </h1> */}
                 <form onSubmit={guessHandler} className='wordle-input-group'>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
@@ -284,7 +370,7 @@ const Wordle = () => {
                     }
                     type='text'
                     placeholder=''
-                    value={tryCount > 3 ? guesses[3][index] : guess[index]}
+                    // value={tryCount > 4 ? guesses[4][index] : guess[index]}
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
                     />
                     ))}
@@ -293,12 +379,12 @@ const Wordle = () => {
                 </div>
 
                 <div className='input-answer' >
-                    <h1 className='wordle-guess' >
-                        {guesses.length > 4 ? 
-                        guesses[4].split('').map((letter, index) => (
+                    {/* <h1 className='wordle-guess' >
+                        {guesses.length > 5 ? 
+                        guesses[5].split('').map((letter, index) => (
                             <span key={index} className='wordle-letter'>{letter}</span>
                         )) : ' '} 
-                    </h1>
+                    </h1> */}
                 <form onSubmit={guessHandler} className='wordle-input-group'>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
@@ -316,39 +402,7 @@ const Wordle = () => {
                     }
                     type='text'
                     placeholder=''
-                    value={tryCount > 4 ? guesses[4][index] : guess[index]}
-                    onChange={(event) => inputChangeHandler(index, event.target.value)}
-                    />
-                    ))}
-                    <button onClick={() => { countIncrease(); pushGuess(); }} type="submit">Submit</button>
-                </form>
-                </div>
-
-                <div className='input-answer' >
-                    <h1 className='wordle-guess' >
-                        {guesses.length > 5 ? 
-                        guesses[5].split('').map((letter, index) => (
-                            <span key={index} className='wordle-letter'>{letter}</span>
-                        )) : ' '} 
-                    </h1>
-                <form onSubmit={guessHandler} className='wordle-input-group'>
-                    {Array.from({ length: 5 }, (_, index) => (
-                    <input
-                    ref={inputRefs[index]}
-                    maxLength={1}
-                    key={index}
-                    className={
-                        tryCount > 6
-                            ? wordProgress[6][index] === true
-                                ? 'wordle-input-correct'
-                                : wordProgress[6][index] === 1
-                                ? 'wordle-input-partial'
-                                : 'wordle-input'
-                            : 'wordle-input-disabled'
-                    }
-                    type='text'
-                    placeholder=''
-                    value={tryCount > 5 ? guesses[5][index] : guess[index]}
+                    // value={tryCount > 5 ? guesses[5][index] : guess[index]}
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
                     />
                     ))}
