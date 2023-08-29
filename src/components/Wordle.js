@@ -8,7 +8,8 @@ const Wordle = () => {
     const [guess, setGuess] = useState([])
     const [guesses, setGuesses] = useState([])
     const initialProgress = Array.from({ length: 6 }, () => Array.from({ length: 5 }, () => false));
-const [wordProgress, setWordProgress] = useState(initialProgress);
+    const [wordProgress, setWordProgress] = useState(initialProgress);
+    const [win, setWin] = useState(false)   
 
     const words = [
         "QUART", "COYLY", "YOUTH", "RHYME", "BUGGY", "ALIEN", "SMEAR", "UNFIT", "PATTY", "CLING",
@@ -69,6 +70,13 @@ const [wordProgress, setWordProgress] = useState(initialProgress);
         //     inputRefs[index + 1].current.focus();
         // }
     };
+
+    const checkWin = () => {
+
+        if(wordProgress[tryCount].every((item) => item === true)) {
+            setWin(true)
+        }
+    }
       
     
 
@@ -77,6 +85,7 @@ const [wordProgress, setWordProgress] = useState(initialProgress);
             console.log(guesses)
             console.log(currentWord)
             console.log(wordProgress)
+            console.log(win)
         }
 
     const inputRefs = Array.from({ length: 5 }, () => React.createRef());
@@ -145,58 +154,7 @@ const [wordProgress, setWordProgress] = useState(initialProgress);
             }
         }
     }
-    // Similar updates for other tryCount cases...
-    
-
-    // if(tryCount === 1 && guess.length === 5) {
-    //     for(let i = 0; i < 5; i++) {
-    //         if (split[i] === guess[i].toUpperCase()) {
-    //             wordProgress[1][i] =(true)
-    //         } else if (split.includes(guess[i].toUpperCase())) {
-    //                 wordProgress[1][i] = 1
-    //         }
-    //     }
-    // }
-
-    // if(tryCount === 2 && guess.length === 5) {
-    //     for(let i = 0; i < 5; i++) {
-    //         if (split[i] === guess[i].toUpperCase()) {
-    //             wordProgress[2][i] =(true)
-    //         } else if (split.includes(guess[i].toUpperCase())) {
-    //                 wordProgress[2][i] = 1
-    //         }
-    //     }
-    // }
-
-    // if(tryCount === 3 && guess.length === 5) {
-    //     for(let i = 0; i < 5; i++) {
-    //         if (split[i] === guess[i].toUpperCase()) {
-    //             wordProgress[3][i] =(true)
-    //         } else if (split.includes(guess[i].toUpperCase())) {
-    //                 wordProgress[3][i] = 1
-    //         }
-    //     }
-    // }
-
-    // if(tryCount === 4 && guess.length === 5) {
-    //     for(let i = 0; i < 5; i++) {
-    //         if (split[i] === guess[i].toUpperCase()) {
-    //             wordProgress[4][i] =(true)
-    //         } else if (split.includes(guess[i].toUpperCase())) {
-    //                 wordProgress[4][i] = 1
-    //         }
-    //     }
-    // }
-
-    // if(tryCount === 5 && guess.length === 5) {
-    //     for(let i = 0; i < 5; i++) {
-    //         if (split[i] === guess[i].toUpperCase()) {
-    //             wordProgress[5][i] =(true)
-    //         } else if (split.includes(guess[i].toUpperCase())) {
-    //                 wordProgress[5][i] = 1
-    //         }
-    //     }
-    // }
+        
 
 
     
@@ -207,7 +165,7 @@ const [wordProgress, setWordProgress] = useState(initialProgress);
         <NavBar/>
         <div>
             <h1 className='wordle-title'>Wordle</h1>
-            <h3 className='wordle-subtitle'>Guess the 5 letter word</h3>
+            <h3 className='wordle-win'>You Win</h3>
 
             <div className='wordle-input-cont'>
                 <div className='wordle-info'>
@@ -246,7 +204,7 @@ const [wordProgress, setWordProgress] = useState(initialProgress);
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
                     />
                     ))}
-                    <button onClick={() => { countIncrease(); pushGuess(); }} type="submit">Submit</button>
+                    <button onClick={() => { countIncrease(); pushGuess(); checkWin(); }} type="submit">Submit</button>
                 </form>
                 </div>
 

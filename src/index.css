@@ -235,9 +235,30 @@ code {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   background-color: black;
   color: white;
+}
+
+@keyframes flash-animation {
+  0%, 100% {
+      opacity: 1;
+  }
+  50% {
+      opacity: 0;
+  }
+}
+
+.wordle-win{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  font-size: 40px;
+  animation: flash-animation 2s infinite;
+  
 }
 
 .wordle-input-cont{
