@@ -96,61 +96,147 @@ const Wordle = () => {
 
 
     if (tryCount === 0 && guess.length === 5) {
+        let copy = [...split]; // Create a copy of the split array
+    
+        // Process correct letters in correct positions
         for (let i = 0; i < 5; i++) {
             if (split[i] === guess[i].toUpperCase()) {
                 wordProgress[tryCount][i] = true;
-            } else if (split.includes(guess[i].toUpperCase())) {
-                wordProgress[tryCount][i] = 1;
+                copy[i] = ''; // Mark the letter as used in the copy array
+            }
+        }
+    
+        // Process correct letters in incorrect positions
+        for (let i = 0; i < 5; i++) {
+            if (!wordProgress[tryCount][i]) {
+                const index = copy.indexOf(guess[i].toUpperCase());
+    
+                if (index !== -1 && index !== i) {
+                    wordProgress[tryCount][i] = 1;
+                    copy[index] = ''; // Mark the letter as used in the copy array
+                }
             }
         }
     }
+    
+    
 
     if (tryCount === 1 && guess.length === 5) {
+        let copy = [...split]; // Create a copy of the split array
+    
+        // Process correct letters in correct positions
         for (let i = 0; i < 5; i++) {
             if (split[i] === guess[i].toUpperCase()) {
                 wordProgress[tryCount][i] = true;
-            } else if (split.includes(guess[i].toUpperCase())) {
-                wordProgress[tryCount][i] = 1;
+                copy[i] = ''; // Mark the letter as used in the copy array
+            }
+        }
+    
+        // Process correct letters in incorrect positions
+        for (let i = 0; i < 5; i++) {
+            if (!wordProgress[tryCount][i]) {
+                const index = copy.indexOf(guess[i].toUpperCase());
+    
+                if (index !== -1 && index !== i) {
+                    wordProgress[tryCount][i] = 1;
+                    copy[index] = ''; // Mark the letter as used in the copy array
+                }
             }
         }
     }
 
     if (tryCount === 2 && guess.length === 5) {
+        let copy = [...split]; // Create a copy of the split array
+    
+        // Process correct letters in correct positions
         for (let i = 0; i < 5; i++) {
             if (split[i] === guess[i].toUpperCase()) {
                 wordProgress[tryCount][i] = true;
-            } else if (split.includes(guess[i].toUpperCase())) {
-                wordProgress[tryCount][i] = 1;
+                copy[i] = ''; // Mark the letter as used in the copy array
+            }
+        }
+    
+        // Process correct letters in incorrect positions
+        for (let i = 0; i < 5; i++) {
+            if (!wordProgress[tryCount][i]) {
+                const index = copy.indexOf(guess[i].toUpperCase());
+    
+                if (index !== -1 && index !== i) {
+                    wordProgress[tryCount][i] = 1;
+                    copy[index] = ''; // Mark the letter as used in the copy array
+                }
             }
         }
     }
 
     if (tryCount === 3 && guess.length === 5) {
+        let copy = [...split]; // Create a copy of the split array
+    
+        // Process correct letters in correct positions
         for (let i = 0; i < 5; i++) {
             if (split[i] === guess[i].toUpperCase()) {
                 wordProgress[tryCount][i] = true;
-            } else if (split.includes(guess[i].toUpperCase())) {
-                wordProgress[tryCount][i] = 1;
+                copy[i] = ''; // Mark the letter as used in the copy array
+            }
+        }
+    
+        // Process correct letters in incorrect positions
+        for (let i = 0; i < 5; i++) {
+            if (!wordProgress[tryCount][i]) {
+                const index = copy.indexOf(guess[i].toUpperCase());
+    
+                if (index !== -1 && index !== i) {
+                    wordProgress[tryCount][i] = 1;
+                    copy[index] = ''; // Mark the letter as used in the copy array
+                }
             }
         }
     }
 
     if (tryCount === 4 && guess.length === 5) {
+        let copy = [...split]; // Create a copy of the split array
+    
+        // Process correct letters in correct positions
         for (let i = 0; i < 5; i++) {
             if (split[i] === guess[i].toUpperCase()) {
                 wordProgress[tryCount][i] = true;
-            } else if (split.includes(guess[i].toUpperCase())) {
-                wordProgress[tryCount][i] = 1;
+                copy[i] = ''; // Mark the letter as used in the copy array
+            }
+        }
+    
+        // Process correct letters in incorrect positions
+        for (let i = 0; i < 5; i++) {
+            if (!wordProgress[tryCount][i]) {
+                const index = copy.indexOf(guess[i].toUpperCase());
+    
+                if (index !== -1 && index !== i) {
+                    wordProgress[tryCount][i] = 1;
+                    copy[index] = ''; // Mark the letter as used in the copy array
+                }
             }
         }
     }
 
     if (tryCount === 5 && guess.length === 5) {
+        let copy = [...split]; // Create a copy of the split array
+    
+        // Process correct letters in correct positions
         for (let i = 0; i < 5; i++) {
             if (split[i] === guess[i].toUpperCase()) {
                 wordProgress[tryCount][i] = true;
-            } else if (split.includes(guess[i].toUpperCase())) {
-                wordProgress[tryCount][i] = 1;
+                copy[i] = ''; // Mark the letter as used in the copy array
+            }
+        }
+    
+        // Process correct letters in incorrect positions
+        for (let i = 0; i < 5; i++) {
+            if (!wordProgress[tryCount][i]) {
+                const index = copy.indexOf(guess[i].toUpperCase());
+    
+                if (index !== -1 && index !== i) {
+                    wordProgress[tryCount][i] = 1;
+                    copy[index] = ''; // Mark the letter as used in the copy array
+                }
             }
         }
     }
