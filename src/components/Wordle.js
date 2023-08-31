@@ -88,7 +88,9 @@ const Wordle = () => {
             console.log(win)
         }
 
-    const inputRefs = Array.from({ length: 5 }, () => React.createRef());
+    // const inputRefs = Array.from({ length: 5 }, () => React.createRef());
+    const inputRefs = Array.from({ length: 6 }, () => React.createRef());
+
 
     useEffect(() => {
         randomWord()
@@ -119,8 +121,6 @@ const Wordle = () => {
         }
     }
     
-    
-
     if (tryCount === 1 && guess.length === 5) {
         let copy = [...split]; // Create a copy of the split array
     
@@ -241,34 +241,33 @@ const Wordle = () => {
         }
     }
         
-
-
-    
-    
+    if (win) {
+        setTimeout(() => {
+            setWin(false);
+            setTryCount(0);
+            setGuess([]);
+            setGuesses([]);
+            setWordProgress([initialProgress]);
+            randomWord();
+            window.location.reload();
+        }, 5000);
+    }
 
   return (
     <> 
         <NavBar/>
-        <div>
-            <h1 className='wordle-title'>Wordle</h1>
-            <h3 className='wordle-win'>You Win</h3>
+    <div>
+        <h1 className='wordle-title'>Wordle</h1>
+        <h3 className={win ? "wordle-win-flashing" : "wordle-win"}>You Win</h3>
 
-            <div className='wordle-input-cont'>
-                <div className='wordle-info'>
-                    <h3 className='wordle-subtitle'>Guesses: {tryCount}/6</h3>
-                    <button onClick={logger}>Log</button>
-                </div>
+        <div className='wordle-input-cont'>
+            <div className='wordle-info'>
+                <h3 className='wordle-subtitle'>Guesses: {tryCount}/6</h3>
+                <button onClick={logger}>Log</button>
+            </div>
 
-                <div className='worlde-all-groups'>
-
+            <div className='worlde-all-groups'>
                 <div className='input-answer' >
-                    {/* <h1 className='wordle-guess' >
-                        {guesses.length > 0 ? 
-                        guesses[0].split('').map((letter, index) => (
-                            <span key={index} className='wordle-letter'>{letter}</span>
-                        )) : ' '} 
-                    </h1> */}
-
                 <form onSubmit={guessHandler} className='wordle-input-group'>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
@@ -286,21 +285,14 @@ const Wordle = () => {
                     }
                     type='text'
                     placeholder=''
-                    // value={tryCount > 0 ? guesses[0][index] : guess[index]}
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
                     />
                     ))}
                     <button onClick={() => { countIncrease(); pushGuess(); checkWin(); }} type="submit">Submit</button>
                 </form>
-                </div>
+            </div>
 
-                <div className='input-answer' >
-                    {/* <h1 className='wordle-guess' >
-                        {guesses.length > 1 ? 
-                        guesses[1].split('').map((letter, index) => (
-                            <span key={index} className='wordle-letter'>{letter}</span>
-                        )) : ' '} 
-                    </h1> */}
+            <div className='input-answer' >
                 <form onSubmit={guessHandler} className='wordle-input-group'>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
@@ -318,21 +310,14 @@ const Wordle = () => {
                     }
                     type='text'
                     placeholder=''
-                    // value={tryCount > 1 ? guesses[1][index] : guess[index]}
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
                     />
                     ))}
-                    <button onClick={() => { countIncrease(); pushGuess(); }} type="submit">Submit</button>
+                    <button onClick={() => { countIncrease(); pushGuess(); checkWin(); }} type="submit">Submit</button>
                 </form>
-                </div>
+            </div>
 
-                <div className='input-answer' >
-                    {/* <h1 className='wordle-guess' >
-                        {guesses.length > 2 ? 
-                        guesses[2].split('').map((letter, index) => (
-                            <span key={index} className='wordle-letter'>{letter}</span>
-                        )) : ' '} 
-                    </h1> */}
+            <div className='input-answer' >
                 <form onSubmit={guessHandler} className='wordle-input-group'>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
@@ -350,21 +335,14 @@ const Wordle = () => {
                     }
                     type='text'
                     placeholder=''
-                    // value={tryCount > 2 ? guesses[2][index] : guess[index]}
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
                     />
                     ))}
-                    <button onClick={() => { countIncrease(); pushGuess(); }} type="submit">Submit</button>
+                    <button onClick={() => { countIncrease(); pushGuess(); checkWin(); }} type="submit">Submit</button>
                 </form>
-                </div>
+            </div>
 
-                <div className='input-answer' >
-                    {/* <h1 className='wordle-guess' >
-                        {guesses.length > 3 ? 
-                        guesses[3].split('').map((letter, index) => (
-                            <span key={index} className='wordle-letter'>{letter}</span>
-                        )) : ' '} 
-                    </h1> */}
+            <div className='input-answer' >
                 <form onSubmit={guessHandler} className='wordle-input-group'>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
@@ -382,21 +360,14 @@ const Wordle = () => {
                     }
                     type='text'
                     placeholder=''
-                    // value={tryCount > 3 ? guesses[3][index] : guess[index]}
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
                     />
                     ))}
-                    <button onClick={() => { countIncrease(); pushGuess(); }} type="submit">Submit</button>
+                    <button onClick={() => { countIncrease(); pushGuess(); checkWin(); }} type="submit">Submit</button>
                 </form>
-                </div>
+            </div>
 
-                <div className='input-answer' >
-                    {/* <h1 className='wordle-guess' >
-                        {guesses.length > 4 ? 
-                        guesses[4].split('').map((letter, index) => (
-                            <span key={index} className='wordle-letter'>{letter}</span>
-                        )) : ' '} 
-                    </h1> */}
+            <div className='input-answer' >
                 <form onSubmit={guessHandler} className='wordle-input-group'>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
@@ -414,21 +385,14 @@ const Wordle = () => {
                     }
                     type='text'
                     placeholder=''
-                    // value={tryCount > 4 ? guesses[4][index] : guess[index]}
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
                     />
                     ))}
-                    <button onClick={() => { countIncrease(); pushGuess(); }} type="submit">Submit</button>
+                    <button onClick={() => { countIncrease(); pushGuess(); checkWin(); }} type="submit">Submit</button>
                 </form>
-                </div>
+            </div>
 
-                <div className='input-answer' >
-                    {/* <h1 className='wordle-guess' >
-                        {guesses.length > 5 ? 
-                        guesses[5].split('').map((letter, index) => (
-                            <span key={index} className='wordle-letter'>{letter}</span>
-                        )) : ' '} 
-                    </h1> */}
+            <div className='input-answer' >
                 <form onSubmit={guessHandler} className='wordle-input-group'>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
@@ -446,16 +410,14 @@ const Wordle = () => {
                     }
                     type='text'
                     placeholder=''
-                    // value={tryCount > 5 ? guesses[5][index] : guess[index]}
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
                     />
                     ))}
-                    <button onClick={() => { countIncrease(); pushGuess(); }} type="submit">Submit</button>
+                    <button onClick={() => { countIncrease(); pushGuess(); checkWin(); }} type="submit">Submit</button>
                 </form>
-                </div>
+            </div>
 
-                    
-                </div>
+            </div>
             </div>
         </div>
     </>
