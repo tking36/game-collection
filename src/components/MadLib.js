@@ -21,6 +21,8 @@ const MadLib = () => {
         newAdjectives[index] = e.target.value;
         setAdjectives(newAdjectives);
         updateStories(nouns, newAdjectives, verbs);
+        console.log(e)
+        // console.log(index)
     };
     
     const handleVerbChange = (e, index) => {
