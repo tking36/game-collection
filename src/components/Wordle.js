@@ -9,7 +9,7 @@ const Wordle = () => {
     const [guesses, setGuesses] = useState([])
     const initialProgress = Array.from({ length: 6 }, () => Array.from({ length: 5 }, () => false));
     const [wordProgress, setWordProgress] = useState(initialProgress);
-    const [win, setWin] = useState(false)   
+    const [win, setWin] = useState(false) 
 
     const words = [
         "QUART", "COYLY", "YOUTH", "RHYME", "BUGGY", "ALIEN", "SMEAR", "UNFIT", "PATTY", "CLING",
@@ -87,6 +87,8 @@ const Wordle = () => {
             console.log(wordProgress)
             console.log(win)
         }
+
+        
 
     // const inputRefs = Array.from({ length: 5 }, () => React.createRef());
     const inputRefs = Array.from({ length: 6 }, () => React.createRef());
@@ -241,7 +243,7 @@ const Wordle = () => {
         }
     }
         
-    if (win) {
+    if (win || tryCount === 6) {
         setTimeout(() => {
             setWin(false);
             setTryCount(0);
@@ -253,22 +255,37 @@ const Wordle = () => {
         }, 5000);
     }
 
+
+    const isSubmitDisabled = (index) => {
+        return guess.length !== 5 || tryCount !== index;
+    };
+
   return (
     <> 
         <NavBar/>
     <div>
         <h1 className='wordle-title'>Wordle</h1>
         <h3 className={win ? "wordle-win-flashing" : "wordle-win"}>You Win</h3>
+        <h3 className={!win && tryCount === 6 ? "wordle-win-flashing" : "wordle-win"}>You Lost</h3>
 
         <div className='wordle-input-cont'>
             <div className='wordle-info'>
-                <h3 className='wordle-subtitle'>Guesses: {tryCount}/6</h3>
-                <button onClick={logger}>Log</button>
+                <h3 className='wordle-subtitle'>Guesses: {tryCount}/6 {currentWord}</h3>
+                <div className='wordle-info'>
+                    <h3 className='letter-disc'>
+                        <span className='green' >Green:</span>
+                        <span> Correct letter in correct position</span>
+                    </h3>
+                    <h3 className='letter-disc'>
+                        <span className='yellow' >Yellow:</span>
+                        <span> Correct letter in wrong position</span>
+                    </h3>
+                </div>
             </div>
 
             <div className='worlde-all-groups'>
                 <div className='input-answer' >
-                <form onSubmit={guessHandler} className='wordle-input-group'>
+                <form onSubmit={guessHandler} className={tryCount === 0 && !win ? "worlde-input-group-current" : 'wordle-input-group'}>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
                     ref={inputRefs[index]}
@@ -286,14 +303,16 @@ const Wordle = () => {
                     type='text'
                     placeholder=''
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
+                    disabled={tryCount !== 0}
                     />
                     ))}
-                    <button onClick={() => { countIncrease(); pushGuess(); checkWin(); }} type="submit">Submit</button>
+                    <button onClick={() => { countIncrease(); pushGuess(); checkWin(); }} type="submit" disabled={isSubmitDisabled(0)}
+                    >Submit</button>
                 </form>
             </div>
 
             <div className='input-answer' >
-                <form onSubmit={guessHandler} className='wordle-input-group'>
+                <form onSubmit={guessHandler} className={tryCount === 1 && !win ? "worlde-input-group-current" : 'wordle-input-group'}>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
                     ref={inputRefs[index]}
@@ -311,14 +330,17 @@ const Wordle = () => {
                     type='text'
                     placeholder=''
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
+                    disabled={tryCount !== 1}
                     />
                     ))}
-                    <button onClick={() => { countIncrease(); pushGuess(); checkWin(); }} type="submit">Submit</button>
+                    <button onClick={() => { countIncrease(); pushGuess(); checkWin(); }} type="submit"
+                    disabled={isSubmitDisabled(1)}
+                    >Submit</button>
                 </form>
             </div>
 
             <div className='input-answer' >
-                <form onSubmit={guessHandler} className='wordle-input-group'>
+                <form onSubmit={guessHandler} className={tryCount === 2 && !win ? "worlde-input-group-current" : 'wordle-input-group'}>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
                     ref={inputRefs[index]}
@@ -336,14 +358,18 @@ const Wordle = () => {
                     type='text'
                     placeholder=''
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
+                    disabled={tryCount !== 2}
                     />
                     ))}
-                    <button onClick={() => { countIncrease(); pushGuess(); checkWin(); }} type="submit">Submit</button>
+                    <button onClick={() => { countIncrease(); pushGuess(); checkWin(); }} 
+                    type="submit"
+                    disabled={isSubmitDisabled(2)}
+                    >Submit</button>
                 </form>
             </div>
 
             <div className='input-answer' >
-                <form onSubmit={guessHandler} className='wordle-input-group'>
+                <form onSubmit={guessHandler} className={tryCount === 3 && !win ? "worlde-input-group-current" : 'wordle-input-group'}>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
                     ref={inputRefs[index]}
@@ -361,14 +387,17 @@ const Wordle = () => {
                     type='text'
                     placeholder=''
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
+                    disabled={tryCount !== 3}
                     />
                     ))}
-                    <button onClick={() => { countIncrease(); pushGuess(); checkWin(); }} type="submit">Submit</button>
+                    <button onClick={() => { countIncrease(); pushGuess(); checkWin(); }} type="submit"
+                    disabled={isSubmitDisabled(3)}
+                    >Submit</button>
                 </form>
             </div>
 
             <div className='input-answer' >
-                <form onSubmit={guessHandler} className='wordle-input-group'>
+                <form onSubmit={guessHandler} className={tryCount === 4 && !win ? "worlde-input-group-current" : 'wordle-input-group'}>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
                     ref={inputRefs[index]}
@@ -386,14 +415,17 @@ const Wordle = () => {
                     type='text'
                     placeholder=''
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
+                    disabled={tryCount !== 4}
                     />
                     ))}
-                    <button onClick={() => { countIncrease(); pushGuess(); checkWin(); }} type="submit">Submit</button>
+                    <button onClick={() => { countIncrease(); pushGuess(); checkWin(); }} type="submit"
+                    disabled={isSubmitDisabled(4)}
+                    >Submit</button>
                 </form>
             </div>
 
             <div className='input-answer' >
-                <form onSubmit={guessHandler} className='wordle-input-group'>
+                <form onSubmit={guessHandler} className={tryCount === 5 && !win ? "worlde-input-group-current" : 'wordle-input-group'}>
                     {Array.from({ length: 5 }, (_, index) => (
                     <input
                     ref={inputRefs[index]}
@@ -411,9 +443,12 @@ const Wordle = () => {
                     type='text'
                     placeholder=''
                     onChange={(event) => inputChangeHandler(index, event.target.value)}
+                    disabled={tryCount !== 5}
                     />
                     ))}
-                    <button onClick={() => { countIncrease(); pushGuess(); checkWin(); }} type="submit">Submit</button>
+                    <button onClick={() => { countIncrease(); pushGuess(); checkWin(); }} type="submit"
+                    disabled={isSubmitDisabled(5)}
+                    >Submit</button>
                 </form>
             </div>
 

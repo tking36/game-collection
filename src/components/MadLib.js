@@ -72,6 +72,7 @@ const MadLib = () => {
             {prompt ?
                 <div className='ml-prompt'>
                     <div className='ml-prompt-cont'>
+                        
                         <h3 className='prompt-type' >Enter 3 Nouns</h3>
                         {Array.from({ length: 3 }).map((_, index) => (
                             <input className='ml-input' key={index} onChange={(e) => handleNounChange(e, index)} />

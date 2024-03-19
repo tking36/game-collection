@@ -12,7 +12,7 @@ function App() {
         <Route path='/' element={<Home/>}></Route>
         <Route path='/ttt' element={<TTT/>}></Route>
         <Route path='/ml' element={<MadLib/>}></Route>
-        <Route path='wordle' element={<Wordle/>}></Route>
+        <Route path='/wordle' element={<Wordle/>}></Route>
       </Routes>
     </Router>
   );

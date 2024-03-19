@@ -292,6 +292,20 @@ code {
   padding: 10px;
 }
 
+.worlde-input-group-current{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center; 
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: black;
+  color: white;
+  border: 5px solid rgb(58, 171, 56);
+  padding: 10px;
+}
+
 .wordle-input{
   margin-left: 5px;
   margin-right: 5px;
@@ -337,7 +351,17 @@ code {
   color: black;
 }
 
+.letter-disc{
+  font-size: 15px;
+}
 
+.green{
+  color: green;
+}
+
+.yellow{
+  color: yellow;
+}
 
 /* wordle worlde wordle wordle wordle wordle wordle wordle */
 
