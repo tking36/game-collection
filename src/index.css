@@ -230,6 +230,15 @@ code {
 
 /* wordle worlde wordle wordle wordle wordle wordle wordle */
 
+.wordle-game{
+  background: linear-gradient(to right, red, black);
+}
+
+.wordle-subtitle{
+  border: 3px solid rgb(145, 13, 13);
+  background-color: black;
+}
+
 .wordle-title{
   display: flex;
   flex-direction: column;
@@ -272,9 +281,9 @@ code {
   text-align: center; 
   margin-top: 30px;
   margin-bottom: 10px;
-  background-color: black;
+  background: linear-gradient(to left, red, black);
   color: white;
-  border: 2px solid white;
+  border: 5px solid black;
   padding: 10px;
 }
 
@@ -288,7 +297,7 @@ code {
   margin-bottom: 20px;
   background-color: black;
   color: white;
-  border: 2px solid white;
+  border: 2px solid rgb(106, 105, 105);
   padding: 10px;
 }
 
@@ -298,8 +307,8 @@ code {
   align-items: center;
   justify-content: center;
   text-align: center; 
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   background-color: black;
   color: white;
   border: 5px solid rgb(58, 171, 56);
@@ -327,7 +336,9 @@ code {
   display: flex;
   flex-direction: row;
   align-items: center;
+  /* background-color: black; */
 }
+
 
 .wordle-guess{
   margin-right: 40px;
@@ -353,6 +364,9 @@ code {
 
 .letter-disc{
   font-size: 15px;
+  border: 2px solid rgb(145, 13, 13);
+  padding: 5px;
+  background-color: black;
 }
 
 .green{
