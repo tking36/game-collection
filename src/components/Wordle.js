@@ -9,6 +9,8 @@ const Wordle = () => {
     const initialProgress = Array.from({ length: 6 }, () => Array.from({ length: 5 }, () => false));
     const [wordProgress, setWordProgress] = useState(initialProgress);
     const [win, setWin] = useState(false);
+    const [cheatIndex, setCheatIndex] = useState(0);
+    const [cheatLetters, setCheatLetters] = useState([]);
 
     const randomWord = useCallback(() => {
         const words = [
@@ -126,6 +128,13 @@ const Wordle = () => {
         }
     }, [win, tryCount, initialProgress, randomWord]);
 
+    const pushCheat = () => {
+        if (cheatIndex < currentWord.length) {
+            setCheatLetters([...cheatLetters, currentWord[cheatIndex]]);
+            setCheatIndex(cheatIndex + 1); // Move to the next letter
+        }
+    };
+
     const renderInputFields = () => {
         return Array.from({ length: 6 }, (_, index) => (
             <div className='input-answer' key={index}>
@@ -164,8 +173,7 @@ const Wordle = () => {
             
                         <div className='wordle-input-cont'>
                             <div className='wordle-info'>
-                            
-                                <h3 className='wordle-subtitle'>Guesses: {tryCount}/6 {currentWord}</h3>
+                                <h3 className='wordle-subtitle'>Guesses: {tryCount}/6</h3>
                                 <div className='wordle-info'>
                                     {win || tryCount === 6 ? (
                                     <div>
@@ -184,6 +192,15 @@ const Wordle = () => {
                                         </h3>
                                     </div>
                                     )}
+
+                                    <div className='wordle-cheat'>
+                                        <button class="button-78" onClick={pushCheat}>Cheat</button>
+                                        <h3 className='cheat-letters'>
+                                            {cheatLetters.map((letter, index) => (
+                                            <span key={index}>{letter}</span>
+                                            ))}
+                                        </h3>
+                                    </div>
                                 </div>
                             </div>
                             <div>

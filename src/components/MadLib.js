@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import NavBar from './NavBar';
 
 const MadLib = () => {
@@ -6,33 +6,9 @@ const MadLib = () => {
     const [nouns, setNouns] = useState([]);
     const [adjectives, setAdjectives] = useState([]);
     const [verbs, setVerbs] = useState([]);
+    const [stories, setStories] = useState([]);
 
-    const [stories, setStories] = useState([])
-
-    const handleNounChange = (e, index) => {
-        const newNouns = [...nouns];
-        newNouns[index] = e.target.value;
-        setNouns(newNouns);
-        updateStories(newNouns, adjectives, verbs);
-    };
-    
-    const handleAdjectiveChange = (e, index) => {
-        const newAdjectives = [...adjectives];
-        newAdjectives[index] = e.target.value;
-        setAdjectives(newAdjectives);
-        updateStories(nouns, newAdjectives, verbs);
-        console.log(e)
-        // console.log(index)
-    };
-    
-    const handleVerbChange = (e, index) => {
-        const newVerbs = [...verbs];
-        newVerbs[index] = e.target.value;
-        setVerbs(newVerbs);
-        updateStories(nouns, adjectives, newVerbs);
-    };
-    
-    const updateStories = (newNouns, newAdjectives, newVerbs) => {
+    const updateStories = useCallback((newNouns, newAdjectives, newVerbs) => {
         const newStories = [
             [
                 `Once upon a time, there was a ${nouns[0]} who wanted to ${verbs[0]} the ${nouns[1]}.`,
@@ -56,14 +32,33 @@ const MadLib = () => {
             ]
         ];
         setStories(newStories);
+    }, [nouns, adjectives, verbs]);
+
+    const handleNounChange = (e, index) => {
+        const newNouns = [...nouns];
+        newNouns[index] = e.target.value.toLowerCase(); // Convert to lowercase
+        setNouns(newNouns);
+        updateStories(newNouns, adjectives, verbs);
+    };
+    
+    const handleAdjectiveChange = (e, index) => {
+        const newAdjectives = [...adjectives];
+        newAdjectives[index] = e.target.value.toLowerCase(); // Convert to lowercase
+        setAdjectives(newAdjectives);
+        updateStories(nouns, newAdjectives, verbs);
+    };
+    
+    const handleVerbChange = (e, index) => {
+        const newVerbs = [...verbs];
+        newVerbs[index] = e.target.value.toLowerCase(); // Convert to lowercase
+        setVerbs(newVerbs);
+        updateStories(nouns, adjectives, newVerbs);
     };
 
     useEffect(() => {
         updateStories(nouns, adjectives, verbs);
-    }, [nouns, adjectives, verbs]);
+    }, [nouns, adjectives, verbs, updateStories]);
     
-    
-
     return (
         <div className='ml-container'>
             <NavBar className='nav' />
@@ -72,25 +67,30 @@ const MadLib = () => {
             {prompt ?
                 <div className='ml-prompt'>
                     <div className='ml-prompt-cont'>
-                        
                         <h3 className='prompt-type' >Enter 3 Nouns</h3>
+                        <div>
                         {Array.from({ length: 3 }).map((_, index) => (
                             <input className='ml-input' key={index} onChange={(e) => handleNounChange(e, index)} />
                         ))}
+                        </div>
                     </div>
                     <div className='ml-prompt-cont'>
                         <h3 className='prompt-type' >Enter 3 Adjectives</h3>
+                        <div>
                         {Array.from({ length: 3 }).map((_, index) => (
                             <input className='ml-input' key={index} onChange={(e) => handleAdjectiveChange(e, index)} />
                         ))}
+                        </div>
                     </div>
                     <div className='ml-prompt-cont'>
                         <h3 className='prompt-type' >Enter 3 Verbs</h3>
+                        <div>
                         {Array.from({ length: 3 }).map((_, index) => (
                             <input className='ml-input' key={index} onChange={(e) => handleVerbChange(e, index)} />
                         ))}
+                        </div>
                     </div>
-                    <button className='ml-submit' onClick={() => setPrompt(false)}>Submit</button>
+                    <button className='ml-submit button-78' onClick={() => setPrompt(false)}>Submit</button>
                 </div>
                 :
                 null}
@@ -100,7 +100,7 @@ const MadLib = () => {
                 {stories.map((story, index) => (
                     <p className='ml-p' key={index}>{story}</p>
                 ))}
-                <button className='ml-reset' onClick={() => setPrompt(true)}>Reset</button>
+                <button className='ml-reset button-78' onClick={() => setPrompt(true)}>Reset</button>
             </div>
             :
             null}
