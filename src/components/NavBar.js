@@ -15,6 +15,7 @@ const NavBar = () => {
             <Nav.Link className='nav-text' href="/ttt">TTT</Nav.Link>
             <Nav.Link className='nav-text' href='/ml'>Mad Libs</Nav.Link>
             <Nav.Link className='nav-text' href='/wordle'>Wordle</Nav.Link>
+            <Nav.Link className='nav-text' href='/WWW'>WWW</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

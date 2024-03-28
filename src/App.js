@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import TTT from './components/TTT';
 import MadLib from './components/MadLib';
 import Wordle from './components/Wordle';
+import WWW from './components/WWW';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path='/ttt' element={<TTT/>}></Route>
         <Route path='/ml' element={<MadLib/>}></Route>
         <Route path='/wordle' element={<Wordle/>}></Route>
+        <Route path='www' element={<WWW/>}></Route>
       </Routes>
     </Router>
   );

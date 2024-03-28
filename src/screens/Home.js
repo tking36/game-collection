@@ -45,6 +45,17 @@ const Home = () => {
           </Card.Body>
         </Card>
 
+        <Card className='game-container' style={{ width: '18rem' }}>
+          <Card.Img variant="top" src="https://c8.alamy.com/comp/JCDWCY/cartoon-cowboy-leaning-on-a-fence-smoking-a-cigarette-JCDWCY.jpg" className='game-img' />
+          <Card.Body>
+            <Card.Title>Wild Wild West</Card.Title>
+            <Card.Text>
+              Survive the Wild Wild West!
+            </Card.Text>
+            <a href='/WWW' className='button-78' variant="primary">Play</a>
+          </Card.Body>
+        </Card>
+
       </div>
     </div>
   );
