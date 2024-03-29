@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import TTT from './components/TTT';
 import MadLib from './components/MadLib';
 import Wordle from './components/Wordle';
-import WWW from './components/WWW';
+import WWW from './components/WWW-comps/WWW';
 
 function App() {
   return (
