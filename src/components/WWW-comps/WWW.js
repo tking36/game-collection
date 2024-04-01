@@ -37,14 +37,14 @@ const handleIntro = () => {
                 </div>
             </div>
             <div className= {intro || creation ? 'WWW-full WWW-main-right'  : 'WWW-main-right'}>
-            <Intro intro={intro} handleIntro={handleIntro}/>
+            <Intro className= {intro ? '' : 'WWW-hide'} intro={intro} handleIntro={handleIntro}/>
             <Creation creation={creation} playerName={playerName} playerHealth={playerHealth} playerStrength={playerStrength} playerCharisma={playerCharisma} playerAgility={playerAgility}/>
             </div>
         </div>
         
         <div className='WWW-bottom'>
             <Buttons creation={creation} level={level} gameOver={gameOver} gameWon={gameWon} gameLost={gameLost} playerName={playerName} playerHealth={playerHealth} playerStrength={playerStrength} playerCharisma={playerCharisma} playerAgility={playerAgility}
-            handleIntro={handleIntro} />
+            handleIntro={handleIntro} intro={intro} />
             {intro ? <p>intro</p> : null}
             {creation ? <p>creation</p> : null}
         </div>
