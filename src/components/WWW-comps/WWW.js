@@ -12,6 +12,7 @@ let [level , setLevel] = useState(0)
 let [gameOver , setGameOver] = useState(false)
 let [gameWon , setGameWon] = useState(false)
 let [gameLost , setGameLost] = useState(false)
+let [skillPoints, setSkillPoints] = useState(10);
 let [playerName , setPlayerName] = useState('')
 let [playerHealth , setPlayerHealth] = useState(100)
 let [playerStrength , setPlayerStrength] = useState(10)
@@ -37,8 +38,11 @@ const handleIntro = () => {
                 </div>
             </div>
             <div className= {intro || creation ? 'WWW-full WWW-main-right'  : 'WWW-main-right'}>
-            <Intro className= {intro ? '' : 'WWW-hide'} intro={intro} handleIntro={handleIntro}/>
-            <Creation creation={creation} playerName={playerName} playerHealth={playerHealth} playerStrength={playerStrength} playerCharisma={playerCharisma} playerAgility={playerAgility}/>
+                {intro ? 
+                <Intro className='' intro={intro} handleIntro={handleIntro}/>
+                : 
+                <Creation className='' setPlayerName={setPlayerName} setPlayerHealth={setPlayerHealth} setPlayerAgility = {setPlayerAgility} setPlayerCharisma = {setPlayerCharisma} setPlayerStrength = {setPlayerStrength} skillPoints={skillPoints} setSkillPoints = {setSkillPoints} creation={creation} playerName={playerName} setPl playerHealth={playerHealth} playerStrength={playerStrength} playerCharisma={playerCharisma} playerAgility={playerAgility}/>
+                }
             </div>
         </div>
         

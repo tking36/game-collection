@@ -5,7 +5,7 @@ const Buttons = ({ handleIntro, creation, intro }) => {
     <div>
         <button className={intro ? 'button-78' : 'WWW-hide'} onClick={handleIntro}>Start Game</button>
 
-        <button className={creation ? 'button-78' : 'WWW-hide'} onClick={handleIntro}></button>
+        <button className={creation ? 'button-78' : 'WWW-hide'} onClick={handleIntro}>Submit Stats</button>
     </div>
   )
 }
