@@ -14,6 +14,7 @@ let [gameWon , setGameWon] = useState(false)
 let [gameLost , setGameLost] = useState(false)
 let [skillPoints, setSkillPoints] = useState(10);
 let [playerName , setPlayerName] = useState('')
+let [playerImage, setPlayerImage] = useState('')
 let [playerHealth , setPlayerHealth] = useState(100)
 let [playerStrength , setPlayerStrength] = useState(10)
 let [playerCharisma , setPlayerCharisma] = useState(10)
@@ -22,6 +23,12 @@ let [playerAgility , setPlayerAgility] = useState(10)
 const handleIntro = () => {
     setIntro(false)
     setCreation(true)
+}
+
+const endCreation = () => {
+    setLevel(0)
+    setIntro(false)
+    setCreation(false)
 }
 
 
@@ -41,16 +48,14 @@ const handleIntro = () => {
                 {intro ? 
                 <Intro className='' intro={intro} handleIntro={handleIntro}/>
                 : 
-                <Creation className='' setPlayerName={setPlayerName} setPlayerHealth={setPlayerHealth} setPlayerAgility = {setPlayerAgility} setPlayerCharisma = {setPlayerCharisma} setPlayerStrength = {setPlayerStrength} skillPoints={skillPoints} setSkillPoints = {setSkillPoints} creation={creation} playerName={playerName} setPl playerHealth={playerHealth} playerStrength={playerStrength} playerCharisma={playerCharisma} playerAgility={playerAgility}/>
+                <Creation className='' setPlayerName={setPlayerName} setPlayerHealth={setPlayerHealth} setPlayerAgility = {setPlayerAgility} setPlayerCharisma = {setPlayerCharisma} setPlayerStrength = {setPlayerStrength} skillPoints={skillPoints} setSkillPoints = {setSkillPoints} creation={creation} playerName={playerName}  playerHealth={playerHealth} playerStrength={playerStrength} playerCharisma={playerCharisma} playerAgility={playerAgility} level={level} playerImage={playerImage} setPlayerImage={setPlayerImage} />
                 }
             </div>
         </div>
         
         <div className='WWW-bottom'>
-            <Buttons creation={creation} level={level} gameOver={gameOver} gameWon={gameWon} gameLost={gameLost} playerName={playerName} playerHealth={playerHealth} playerStrength={playerStrength} playerCharisma={playerCharisma} playerAgility={playerAgility}
-            handleIntro={handleIntro} intro={intro} />
-            {intro ? <p>intro</p> : null}
-            {creation ? <p>creation</p> : null}
+            <Buttons creation={creation} level={level} setLevel={setLevel} gameOver={gameOver} gameWon={gameWon} gameLost={gameLost} playerName={playerName} playerHealth={playerHealth} playerStrength={playerStrength} playerCharisma={playerCharisma} playerAgility={playerAgility}
+            handleIntro={handleIntro} intro={intro} endCreation={endCreation} />
         </div>
     </div>
     </>

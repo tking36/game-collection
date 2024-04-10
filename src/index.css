@@ -645,6 +645,24 @@ justify-content: center;
   margin: 20px;
   background-color: blue;
 }
+
+.WWW-char-image{
+  width: 200px;
+  height: 200px;
+  border: 5px solid white;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px black;
+  margin: auto;
+}
+
+.WWW-char-image-active{
+  width: 200px;
+  height: 200px;
+  border: 5px solid green;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px black;
+  margin: auto;
+}
 /* WWW WWW WWW WWW WWW WWW WWW WWW WWW WWW WWW WWW WWW WWW */
 
 
