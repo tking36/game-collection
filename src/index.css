@@ -663,6 +663,31 @@ justify-content: center;
   box-shadow: 5px 5px 5px black;
   margin: auto;
 }
+
+.WWW-Char-Cont{
+  display: flex;
+  color: black;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.WWW-char-info-cont{
+  display: flex;
+  color: black;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.WWW-char-info{
+  font-size: 20px;
+  margin-left: 10px;
+}
 /* WWW WWW WWW WWW WWW WWW WWW WWW WWW WWW WWW WWW WWW WWW */
 
 

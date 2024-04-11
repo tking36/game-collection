@@ -4,6 +4,7 @@ import NavBar from '../NavBar'
 import Intro from './Intro'
 import Buttons from './Buttons'
 import Creation from './Creation'
+import Character from './Character'
 
 const WWW = () => {
 let [intro , setIntro] = useState(true)
@@ -41,7 +42,7 @@ const endCreation = () => {
                     <h1>LT</h1>
                 </div>
                 <div className='WWW-left-bottom'>
-                    <h1>LB</h1>
+                    <Character  setPlayerName={setPlayerName} setPlayerHealth={setPlayerHealth} setPlayerAgility = {setPlayerAgility} setPlayerCharisma = {setPlayerCharisma} setPlayerStrength = {setPlayerStrength} skillPoints={skillPoints} setSkillPoints = {setSkillPoints} creation={creation} playerName={playerName}  playerHealth={playerHealth} playerStrength={playerStrength} playerCharisma={playerCharisma} playerAgility={playerAgility} level={level} playerImage={playerImage} setPlayerImage={setPlayerImage}  />
                 </div>
             </div>
             <div className= {intro || creation ? 'WWW-full WWW-main-right'  : 'WWW-main-right'}>
