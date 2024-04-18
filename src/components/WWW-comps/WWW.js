@@ -23,6 +23,7 @@ const WWW = () => {
     let [playerStrength, setPlayerStrength] = useState(10);
     let [playerCharisma, setPlayerCharisma] = useState(10);
     let [playerAgility, setPlayerAgility] = useState(10);
+    let [option, setOption] = useState(0);
 
     let [chars, setChars] = useState([
         ['Bandit Leader', 90, 8, 8, 8],         // Encounter with Bandits
