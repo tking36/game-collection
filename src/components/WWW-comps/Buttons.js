@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 
-const Buttons = ({ handleIntro, creation, intro, playerName, playerHealth, playerStrength, playerCharisma, playerAgility, setLevel, level, endCreation,section, setSection }) => {
+const Buttons = ({ handleIntro, creation, intro, playerName, playerHealth, playerStrength, playerCharisma, playerAgility, setLevel, level, endCreation,section, setSection, chars, gold, skillPoints, setGold, setSkillPoints, setPlayerHealth }) => {
+
+  const [choices, setChoices] = useState(0)
 
   const creationLevel = (num) => {
     setLevel(num)
@@ -18,6 +20,12 @@ const Buttons = ({ handleIntro, creation, intro, playerName, playerHealth, playe
   const consolePlayer = () => {
     console.log([playerName, playerHealth, playerStrength, playerCharisma, playerAgility])
   }
+
+  const choiceNum = (num) => {
+    setChoices(num)
+  }
+  
+
 
   const [buttonsInfo, setButtonsInfo] = useState([
     [
@@ -52,6 +60,37 @@ const Buttons = ({ handleIntro, creation, intro, playerName, playerHealth, playe
     ]
 ]);
 
+const playerChange = () => {
+  if (level === 1) {
+    switch (choices) {
+      case 1:
+        if (playerAgility > chars[level][4]) {
+          setGold(gold + 10);
+          setSkillPoints(skillPoints + 2);
+        } else {
+          setGold(gold + 5);
+          setSkillPoints(skillPoints + 1);
+        }
+        break;
+      case 2:
+        if (playerCharisma > chars[level][3]) {
+          setGold(gold - 5);
+          setSkillPoints(skillPoints + 1);
+        } else {
+          setGold(gold - 5);
+        }
+        break;
+      case 3:
+        setPlayerHealth(playerHealth - 10);
+        setGold(gold - 10);
+        break;
+      default:
+        break;
+    }
+  }
+  console.log([gold, skillPoints])
+};
+
 
   return (
     <>
@@ -77,9 +116,10 @@ const Buttons = ({ handleIntro, creation, intro, playerName, playerHealth, playe
 
           {section === 3 && 
   <div className='WWW-enc-buttons'>
-    <button className='button-78' onClick={() => plusLevel()}>{buttonsInfo[level][0]}</button>
-    <button className='button-78' onClick={() => plusLevel()}>{buttonsInfo[level][1]}</button>
-    <button className='button-78' onClick={() => plusLevel()}>{buttonsInfo[level][2]}</button>
+    <button className='button-78' onClick={() => { plusLevel(); choiceNum(1); playerChange() }}>{buttonsInfo[level][0]}</button>
+
+    <button className='button-78' onClick={() => { plusLevel(); choiceNum(2);playerChange() }}>{buttonsInfo[level][1]}</button>
+    <button className='button-78' onClick={() => { plusLevel(); choiceNum(3);playerChange() }}>{buttonsInfo[level][2]}</button>
   </div>
 }
         </div>

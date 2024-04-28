@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const Main = ({level, section}) => {
+const Main = ({level, section, skillPoints}) => {
 
     const [chapters, setChapters] = useState([
         "Chapter 1: Rattlesnake",
@@ -35,6 +35,8 @@ const Main = ({level, section}) => {
     <div>
         {`Level: ${level}`}
         {`Section: ${section}`}
+        {skillPoints}
+        
         <div className='WWW-ch-one'>
             {section === 1 && <h1 className='WWW-sect-intro'>{chapters[level]}</h1> }
             {section === 2 && <p className='WWW-sect-intro'>{intros[level]}</p> }

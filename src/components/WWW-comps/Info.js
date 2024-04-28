@@ -2,10 +2,10 @@ import React from 'react';
 
 const Info = ({ level, section,chars }) => {
   return (
-    level === 0 && (
+    
       <div>
         { (section === 1 || section === 2) && (
-          <h1 className='WWW-sect-intro'>Map: Trail</h1>
+          <h1 className='WWW-sect-intro'>Picture of Scene</h1>
         )}
         { section === 3 && (
            <div className='WWW-char-info-cont'>
@@ -16,7 +16,7 @@ const Info = ({ level, section,chars }) => {
            <h2 className='WWW-char-info'>Player Agility: {chars[level][4]}</h2>
          </div> )}
       </div>
-    )
+    
   );
 }
 

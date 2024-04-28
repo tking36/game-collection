@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import React from 'react'
 
 const Character = ( { creation,
@@ -15,7 +16,15 @@ const Character = ( { creation,
     setSkillPoints,
     level,
     playerImage,
-    setPlayerImage,}) => {
+    setPlayerImage,
+gold}) => {
+
+    useEffect(() => {
+        // Call the playerChange function here whenever playerHealth or gold changes
+        otherProps.playerChange();
+      }, [playerHealth, gold]);
+
+    
   return (
     <div className='WWW-Char-Cont'>
           <img className='WWW-char-image' src={playerImage}></img>
@@ -25,6 +34,7 @@ const Character = ( { creation,
           <h2 className='WWW-char-info'>Player Strength: {playerStrength}</h2>
           <h2 className='WWW-char-info'>Player Charisma: {playerCharisma}</h2>
           <h2 className='WWW-char-info'>Player Agility: {playerAgility}</h2>
+            <h2 className='WWW-char-info'>Gold: {gold}</h2>
         </div>
         </div>
   )
