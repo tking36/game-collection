@@ -20,8 +20,7 @@ const Character = ( { creation,
 gold}) => {
 
     useEffect(() => {
-        // Call the playerChange function here whenever playerHealth or gold changes
-        otherProps.playerChange();
+        
       }, [playerHealth, gold]);
 
     

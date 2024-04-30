@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
-const Buttons = ({ handleIntro, creation, intro, playerName, playerHealth, playerStrength, playerCharisma, playerAgility, setLevel, level, endCreation,section, setSection, chars, gold, skillPoints, setGold, setSkillPoints, setPlayerHealth }) => {
+const Buttons = ({ handleIntro, creation, intro, playerName, playerHealth, playerStrength, playerCharisma, playerAgility, setLevel, level, endCreation,section, setSection, chars, gold, skillPoints, setGold, setSkillPoints, setPlayerHealth, setPlayerHealthChange, goldChange, setGoldChange, setSkillPointsChange, skillPointsChange, playerHealthChange }) => {
 
   const [choices, setChoices] = useState(0)
 
@@ -13,12 +13,21 @@ const Buttons = ({ handleIntro, creation, intro, playerName, playerHealth, playe
   }
 
   const plusLevel = () => {
-    setLevel(level + 1)
-    setSection(1)
-  }
+      setLevel(level + 1);
+      setSection(1);
+      setPlayerHealthChange('');
+      setGoldChange('');
+      setSkillPointsChange('');
+
+    
+  };
+  
 
   const consolePlayer = () => {
     console.log([playerName, playerHealth, playerStrength, playerCharisma, playerAgility])
+    console.log('Gold: ', gold)
+    console.log('Skill Points: ', skillPoints)
+    console.log(`Level: ${level}`)
   }
 
   const choiceNum = (num) => {
@@ -61,21 +70,27 @@ const Buttons = ({ handleIntro, creation, intro, playerName, playerHealth, playe
 ]);
 
 const playerChange = () => {
-  if (level === 1) {
+  if (level === 0) {
     switch (choices) {
       case 1:
         if (playerAgility > chars[level][4]) {
           setGold(gold + 10);
           setSkillPoints(skillPoints + 2);
+          setGoldChange('+10');
+          setSkillPointsChange('+2');
         } else {
           setGold(gold + 5);
           setSkillPoints(skillPoints + 1);
+          setGoldChange('+5');
+          setSkillPointsChange('+1');
         }
         break;
       case 2:
         if (playerCharisma > chars[level][3]) {
           setGold(gold - 5);
           setSkillPoints(skillPoints + 1);
+          setGoldChange('-5');
+          setSkillPointsChange('+1');
         } else {
           setGold(gold - 5);
         }
@@ -83,13 +98,19 @@ const playerChange = () => {
       case 3:
         setPlayerHealth(playerHealth - 10);
         setGold(gold - 10);
+        setGoldChange('-10');
+        setPlayerHealthChange('-10');
         break;
       default:
         break;
     }
   }
-  console.log([gold, skillPoints])
 };
+
+useEffect(() => {
+  playerChange();
+}
+, [choices]);
 
 
   return (
@@ -116,14 +137,18 @@ const playerChange = () => {
 
           {section === 3 && 
   <div className='WWW-enc-buttons'>
-    <button className='button-78' onClick={() => { plusLevel(); choiceNum(1); playerChange() }}>{buttonsInfo[level][0]}</button>
+    <button className='button-78' onClick={() => { choiceNum(1); playerChange(); plusSection(); }}>{buttonsInfo[level][0]}</button>
 
-    <button className='button-78' onClick={() => { plusLevel(); choiceNum(2);playerChange() }}>{buttonsInfo[level][1]}</button>
-    <button className='button-78' onClick={() => { plusLevel(); choiceNum(3);playerChange() }}>{buttonsInfo[level][2]}</button>
+    <button className='button-78' onClick={() => { choiceNum(2);playerChange(); plusSection();  }}>{buttonsInfo[level][1]}</button>
+    <button className='button-78' onClick={() => { choiceNum(3);playerChange(); plusSection();}}>{buttonsInfo[level][2]}</button>
   </div>
 }
+
+          {section === 4 && <button onClick={() => plusLevel()} className='button-78'>Next Encounter</button>
+          }
         </div>
       )}
+      {/* <button className='button-78' onClick={consolePlayer}>Console Player</button> */}
     </>
   );
 }

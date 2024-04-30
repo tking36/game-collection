@@ -25,6 +25,9 @@ const WWW = () => {
     let [playerAgility, setPlayerAgility] = useState(10);
     let [option, setOption] = useState(0);
     let [gold, setGold] = useState(50);
+    let [goldChange, setGoldChange] = useState('');
+    let [skillPointsChange, setSkillPointsChange] = useState('');
+    let [playerHealthChange, setPlayerHealthChange] = useState('');
 
     let [chars, setChars] = useState([
         ['Bandit Leader', 90, 8, 8, 8],         // Encounter with Bandits
@@ -109,7 +112,7 @@ const WWW = () => {
                                 setPlayerImage={setPlayerImage}
                             />
                         ) : (
-                            !intro && <Main level={level} section={section} chars={chars} setChars={setChars} skillPoints={skillPoints} />
+                            !intro && <Main level={level} section={section} chars={chars} setChars={setChars} skillPoints={skillPoints} gold={gold} playerHealth={playerHealth} playerHealthChange={playerHealthChange} goldChange={goldChange} skillPointsChange={skillPointsChange}/>
                         )}
                     </div>
                 </div>
@@ -138,6 +141,12 @@ const WWW = () => {
                         skillPoints={skillPoints}
                         setSkillPoints={setSkillPoints}
                         setPlayerHealth={setPlayerHealth}
+                        setPlayerHealthChange={setPlayerHealthChange}
+                        setGoldChange={setGoldChange}
+                        setSkillPointsChange={setSkillPointsChange}
+                        playerHealthChange={playerHealthChange}
+                        goldChange={goldChange}
+                        skillPointsChange={skillPointsChange}
                     />
                 </div>
             </div>

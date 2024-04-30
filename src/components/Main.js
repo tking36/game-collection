@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const Main = ({level, section, skillPoints}) => {
+const Main = ({level, section, skillPoints, gold, playerHealth, playerHealthChange, setPlayerHealthChange, goldChange, setGoldChange, setSkillPointsChange, skillPointsChange}) => {
 
     const [chapters, setChapters] = useState([
         "Chapter 1: Rattlesnake",
@@ -35,7 +35,6 @@ const Main = ({level, section, skillPoints}) => {
     <div>
         {`Level: ${level}`}
         {`Section: ${section}`}
-        {skillPoints}
         
         <div className='WWW-ch-one'>
             {section === 1 && <h1 className='WWW-sect-intro'>{chapters[level]}</h1> }
@@ -43,6 +42,14 @@ const Main = ({level, section, skillPoints}) => {
             {section === 3 && 
             <div className='WWW-sect-disc'>
                 <p>{encounters[level]}</p>
+            </div>
+            }
+            {section === 4 &&
+            <div>
+                <h1>Result of Encounter</h1>
+                <p>Health: {playerHealthChange}</p>
+                <p>Gold: {goldChange}</p>
+                <p>Skill Points: {skillPointsChange}</p>
             </div>
             }
         </div>
