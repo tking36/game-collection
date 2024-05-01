@@ -93,6 +93,7 @@ const playerChange = () => {
           setSkillPointsChange('+1');
         } else {
           setGold(gold - 5);
+          setGoldChange('-5');
         }
         break;
       case 3:
@@ -100,6 +101,183 @@ const playerChange = () => {
         setGold(gold - 10);
         setGoldChange('-10');
         setPlayerHealthChange('-10');
+        break;
+      default:
+        break;
+    }
+  }
+
+  else if (level === 1) {
+    switch (choices) {
+      case 1:
+          setGold(gold - 5);
+          setSkillPoints(skillPoints + 1);
+          setGoldChange('-5');
+          setSkillPointsChange('+1');
+        break;
+      case 2:
+        if (playerCharisma > chars[level][3]) {
+          setGold(gold + 10);
+          setSkillPoints(skillPoints + 2);
+          setGoldChange('+10');
+          setSkillPointsChange('+2');
+        } else {
+          setGold(gold + 5);
+          setSkillPoints(skillPoints + 1);
+          setGoldChange('+5');
+          setSkillPointsChange('+1');
+        }
+        break;
+      case 3:
+        setPlayerHealth(playerHealth - 10);
+        setGold(gold - 10);
+        setGoldChange('-10');
+        setPlayerHealthChange('-10');
+        break;
+      default:
+        break;
+    }
+  }
+  // Level 2
+  else if (level === 2) {
+    switch (choices) {
+      case 1:
+        setPlayerHealth(playerHealth - 10);
+        setGold(gold - 10);
+        setGoldChange('-10');
+        setPlayerHealthChange('-10');
+        break;
+      case 2:
+        if (playerStrength > chars[level][2]) {
+          setGold(gold - 5);
+          setSkillPoints(skillPoints + 1);
+          setGoldChange('-5');
+          setSkillPointsChange('+1');
+        } else {
+          setGold(gold - 5);
+          setGoldChange('-5');
+        }
+        break;
+      case 3:
+        if (playerCharisma > chars[level][3]) {
+          setGold(gold + 10);
+          setSkillPoints(skillPoints + 2);
+          setGoldChange('+10');
+          setSkillPointsChange('+2');
+        } else {
+          setGold(gold + 5);
+          setSkillPoints(skillPoints + 1);
+          setGoldChange('+5');
+          setSkillPointsChange('+1');
+        }
+        break;
+      default:
+        break;
+    }
+  }
+  // Level 3
+  else if (level === 3) {
+    switch (choices) {
+      case 1:
+        if (playerAgility > chars[level][4]) {
+          setGold(gold + 10);
+          setSkillPoints(skillPoints + 2);
+          setGoldChange('+10');
+          setSkillPointsChange('+2');
+        } else {
+          setGold(gold + 5);
+          setSkillPoints(skillPoints + 1);
+          setGoldChange('+5');
+          setSkillPointsChange('+1');
+        }
+        break;
+      case 2:
+        if (playerStrength > chars[level][2]) {
+          setGold(gold - 5);
+          setSkillPoints(skillPoints + 1);
+          setGoldChange('-5');
+          setSkillPointsChange('+1');
+        } else {
+          setGold(gold - 5);
+          setGoldChange('-5');
+        }
+        break;
+      case 3:
+        setPlayerHealth(playerHealth - 10);
+        setGold(gold - 10);
+        setGoldChange('-10');
+        setPlayerHealthChange('-10');
+        break;
+      default:
+        break;
+    }
+  }
+  // Level 4
+  else if (level === 4) {
+    switch (choices) {
+      case 1:
+        if (playerAgility > chars[level][4]) {
+          setGold(gold - 5);
+          setSkillPoints(skillPoints + 1);
+          setGoldChange('-5');
+          setSkillPointsChange('+1');
+        } else {
+          setGold(gold - 5);
+          setGoldChange('-5');
+        }
+        break;
+      case 2:
+        if (playerAgility > chars[level][4]) {
+          setGold(gold + 10);
+          setSkillPoints(skillPoints + 2);
+          setGoldChange('+10');
+          setSkillPointsChange('+2');
+        } else {
+          setGold(gold + 5);
+          setSkillPoints(skillPoints + 1);
+          setGoldChange('+5');
+          setSkillPointsChange('+1');
+        }
+        break;
+      case 3:
+        setPlayerHealth(playerHealth - 10);
+        setGold(gold - 10);
+        setGoldChange('-10');
+        setPlayerHealthChange('-10');
+        break;
+      default:
+        break;
+    }
+  }
+  // Level 5
+  else if (level === 5) {
+    switch (choices) {
+      case 1:
+        if (playerAgility > chars[level][4]) {
+          setGold(gold + 10);
+          setGoldChange('+10');
+        } else {
+          setGold(gold - 15);
+          setGoldChange('-15');
+        }
+        break;
+      case 2:
+        if (playerCharisma > chars[level][3]) {
+          setGold(gold + 10);
+          setGoldChange('+10');
+        } else {
+          setGold(gold - 15);
+          setGoldChange('-15');
+        }
+        break;
+      case 3:
+        if (playerAgility > chars[level][2]) {
+          setGold(gold + 10);
+          setGoldChange('+10');
+        } else {
+          setGold(gold - 15);
+          setGoldChange('-15');
+        }
         break;
       default:
         break;
