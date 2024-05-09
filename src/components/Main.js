@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const Main = ({level, section, skillPoints, gold, playerHealth, playerHealthChange, setPlayerHealthChange, goldChange, setGoldChange, setSkillPointsChange, skillPointsChange}) => {
+const Main = ({level, section, skillPoints, gold, playerHealth, playerHealthChange, setPlayerHealthChange, goldChange, setGoldChange, setSkillPointsChange, skillPointsChange, choices, choiceGrade, choiceSkill, levelHigher}) => {
 
     const [chapters, setChapters] = useState([
         "Chapter 1: Rattlesnake",
@@ -46,10 +46,25 @@ const Main = ({level, section, skillPoints, gold, playerHealth, playerHealthChan
             }
             {section === 4 &&
             <div>
-                <h1>Result of Encounter</h1>
-                <p>Health: {playerHealthChange}</p>
-                <p>Gold: {goldChange}</p>
-                <p>Skill Points: {skillPointsChange}</p>
+                <div>
+                    <h1>Thats was a {choiceGrade} choice!</h1>
+                    { choiceGrade !== 'Bad' ?
+                    <div>
+                        { levelHigher ?
+                        <h1>Your {choiceSkill} helped you in this situation</h1>
+                        :
+                        <h1>Your {choiceSkill} was not a high enough level to help you.</h1>
+                        }   
+                    </div>
+                    : 
+                    null }
+                </div>
+                <div>
+                    <h1>Result of Encounter</h1>
+                    <p>Health: {playerHealthChange}</p>
+                    <p>Gold: {goldChange}</p>
+                    <p>Skill Points: {skillPointsChange}</p>
+                </div>
             </div>
             }
         </div>

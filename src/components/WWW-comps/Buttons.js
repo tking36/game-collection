@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 
-const Buttons = ({ handleIntro, creation, intro, playerName, playerHealth, playerStrength, playerCharisma, playerAgility, setLevel, level, endCreation,section, setSection, chars, gold, skillPoints, setGold, setSkillPoints, setPlayerHealth, setPlayerHealthChange, goldChange, setGoldChange, setSkillPointsChange, skillPointsChange, playerHealthChange }) => {
+const Buttons = ({ handleIntro, creation, intro, playerName, playerHealth, playerStrength, playerCharisma, playerAgility, setLevel, level, endCreation,section, setSection, chars, gold, skillPoints, setGold, setSkillPoints, setPlayerHealth, setPlayerHealthChange, goldChange, setGoldChange, setSkillPointsChange, skillPointsChange, playerHealthChange, choices, setChoices, setChoiceGrade, setChoiceSkill, setLevelHigher }) => {
 
-  const [choices, setChoices] = useState(0)
+  
 
   const creationLevel = (num) => {
     setLevel(num)
@@ -18,7 +18,9 @@ const Buttons = ({ handleIntro, creation, intro, playerName, playerHealth, playe
       setPlayerHealthChange('');
       setGoldChange('');
       setSkillPointsChange('');
-
+      setChoiceSkill('');
+      setChoiceGrade('');
+      
     
   };
   
@@ -73,30 +75,39 @@ const playerChange = () => {
   if (level === 0) {
     switch (choices) {
       case 1:
-        if (playerAgility > chars[level][4]) {
+          setChoiceGrade('Perfect');
+          setChoiceSkill('Agility');
+        if (playerAgility >= chars[level][4]) {
           setGold(gold + 10);
           setSkillPoints(skillPoints + 2);
           setGoldChange('+10');
           setSkillPointsChange('+2');
+          setLevelHigher(true)
         } else {
           setGold(gold + 5);
           setSkillPoints(skillPoints + 1);
           setGoldChange('+5');
           setSkillPointsChange('+1');
+          setLevelHigher(false)
         }
         break;
       case 2:
-        if (playerCharisma > chars[level][3]) {
+        setChoiceGrade('Good');
+        setChoiceSkill('Charisma');
+        if (playerCharisma >= chars[level][3]) {
           setGold(gold - 5);
           setSkillPoints(skillPoints + 1);
           setGoldChange('-5');
           setSkillPointsChange('+1');
+          setLevelHigher(true)
         } else {
           setGold(gold - 5);
           setGoldChange('-5');
+          setLevelHigher(false)
         }
         break;
       case 3:
+        setChoiceGrade('Bad');
         setPlayerHealth(playerHealth - 10);
         setGold(gold - 10);
         setGoldChange('-10');
@@ -110,25 +121,31 @@ const playerChange = () => {
   else if (level === 1) {
     switch (choices) {
       case 1:
+        setChoiceGrade('Good');
           setGold(gold - 5);
           setSkillPoints(skillPoints + 1);
           setGoldChange('-5');
           setSkillPointsChange('+1');
         break;
       case 2:
-        if (playerCharisma > chars[level][3]) {
+        setChoiceGrade('Perfect');
+        setChoiceSkill('Charisma');
+        if (playerCharisma >= chars[level][3]) {
           setGold(gold + 10);
           setSkillPoints(skillPoints + 2);
           setGoldChange('+10');
           setSkillPointsChange('+2');
+          setLevelHigher(true)
         } else {
           setGold(gold + 5);
           setSkillPoints(skillPoints + 1);
           setGoldChange('+5');
           setSkillPointsChange('+1');
+          setLevelHigher(false)
         }
         break;
       case 3:
+        setChoiceGrade('Bad');
         setPlayerHealth(playerHealth - 10);
         setGold(gold - 10);
         setGoldChange('-10');
@@ -142,33 +159,42 @@ const playerChange = () => {
   else if (level === 2) {
     switch (choices) {
       case 1:
+        setChoiceGrade('Bad');
         setPlayerHealth(playerHealth - 10);
         setGold(gold - 10);
         setGoldChange('-10');
         setPlayerHealthChange('-10');
         break;
       case 2:
-        if (playerStrength > chars[level][2]) {
+        setChoiceGrade('Good');
+        setChoiceSkill('Strength');
+        if (playerStrength >= chars[level][2]) {
           setGold(gold - 5);
           setSkillPoints(skillPoints + 1);
           setGoldChange('-5');
           setSkillPointsChange('+1');
+          setLevelHigher(true)
         } else {
           setGold(gold - 5);
           setGoldChange('-5');
+          setLevelHigher(false)
         }
         break;
       case 3:
-        if (playerCharisma > chars[level][3]) {
+        setChoiceGrade('Perfect');
+        setChoiceSkill('Charisma');
+        if (playerCharisma >= chars[level][3]) {
           setGold(gold + 10);
           setSkillPoints(skillPoints + 2);
           setGoldChange('+10');
           setSkillPointsChange('+2');
+          setLevelHigher(true)
         } else {
           setGold(gold + 5);
           setSkillPoints(skillPoints + 1);
           setGoldChange('+5');
           setSkillPointsChange('+1');
+          setLevelHigher(false)
         }
         break;
       default:
@@ -179,30 +205,39 @@ const playerChange = () => {
   else if (level === 3) {
     switch (choices) {
       case 1:
-        if (playerAgility > chars[level][4]) {
+        setChoiceGrade('Perfect');
+        setChoiceSkill('Agility');
+        if (playerAgility >= chars[level][4]) {
           setGold(gold + 10);
           setSkillPoints(skillPoints + 2);
           setGoldChange('+10');
           setSkillPointsChange('+2');
+          setLevelHigher(true)
         } else {
           setGold(gold + 5);
           setSkillPoints(skillPoints + 1);
           setGoldChange('+5');
           setSkillPointsChange('+1');
+          setLevelHigher(false)
         }
         break;
       case 2:
-        if (playerStrength > chars[level][2]) {
+        setChoiceGrade('Good');
+        setChoiceSkill('Strength');
+        if (playerStrength >= chars[level][2]) {
           setGold(gold - 5);
           setSkillPoints(skillPoints + 1);
           setGoldChange('-5');
           setSkillPointsChange('+1');
+          setLevelHigher(true)
         } else {
           setGold(gold - 5);
           setGoldChange('-5');
+          setLevelHigher(false)
         }
         break;
       case 3:
+        setChoiceGrade('Bad');
         setPlayerHealth(playerHealth - 10);
         setGold(gold - 10);
         setGoldChange('-10');
@@ -216,30 +251,39 @@ const playerChange = () => {
   else if (level === 4) {
     switch (choices) {
       case 1:
-        if (playerAgility > chars[level][4]) {
+        setChoiceGrade('Good');
+        setChoiceSkill('Agility');
+        if (playerAgility >= chars[level][4]) {
           setGold(gold - 5);
           setSkillPoints(skillPoints + 1);
           setGoldChange('-5');
           setSkillPointsChange('+1');
+          setLevelHigher(true)
         } else {
           setGold(gold - 5);
           setGoldChange('-5');
+          setLevelHigher(false)
         }
         break;
       case 2:
-        if (playerAgility > chars[level][4]) {
+        setChoiceGrade('Perfect');
+        setChoiceSkill('Agility');
+        if (playerAgility >= chars[level][4]) {
           setGold(gold + 10);
           setSkillPoints(skillPoints + 2);
           setGoldChange('+10');
           setSkillPointsChange('+2');
+          setLevelHigher(true)
         } else {
           setGold(gold + 5);
           setSkillPoints(skillPoints + 1);
           setGoldChange('+5');
           setSkillPointsChange('+1');
+          setLevelHigher(false)
         }
         break;
       case 3:
+        setChoiceGrade('Bad');
         setPlayerHealth(playerHealth - 10);
         setGold(gold - 10);
         setGoldChange('-10');
@@ -253,30 +297,42 @@ const playerChange = () => {
   else if (level === 5) {
     switch (choices) {
       case 1:
-        if (playerAgility > chars[level][4]) {
+        setChoiceGrade('Perfect');
+        setChoiceSkill('Agility');
+        if (playerAgility >= chars[level][4]) {
           setGold(gold + 10);
           setGoldChange('+10');
+          setLevelHigher(true)
         } else {
           setGold(gold - 15);
           setGoldChange('-15');
+          setLevelHigher(false)
         }
         break;
       case 2:
-        if (playerCharisma > chars[level][3]) {
+        setChoiceGrade('Perfect');
+        setChoiceSkill('Charisma');
+        if (playerCharisma >= chars[level][3]) {
           setGold(gold + 10);
           setGoldChange('+10');
+          setLevelHigher(true)
         } else {
           setGold(gold - 15);
           setGoldChange('-15');
+          setLevelHigher(false)
         }
         break;
       case 3:
-        if (playerAgility > chars[level][2]) {
+        setChoiceGrade('Perfect');
+        setChoiceSkill('Agility');
+        if (playerAgility >= chars[level][2]) {
           setGold(gold + 10);
           setGoldChange('+10');
+          setLevelHigher(true)
         } else {
           setGold(gold - 15);
           setGoldChange('-15');
+          setLevelHigher(false)
         }
         break;
       default:

@@ -28,6 +28,10 @@ const WWW = () => {
     let [goldChange, setGoldChange] = useState('');
     let [skillPointsChange, setSkillPointsChange] = useState('');
     let [playerHealthChange, setPlayerHealthChange] = useState('');
+    const [choices, setChoices] = useState(0)
+    const [choiceGrade, setChoiceGrade] = useState('')
+    const [choiceSkill, setChoiceSkill] = useState('')
+    const [levelHigher , setLevelHigher] = useState(false)
 
     let [chars, setChars] = useState([
         ['Bandit Leader', 90, 8, 8, 8],         // Encounter with Bandits
@@ -112,7 +116,7 @@ const WWW = () => {
                                 setPlayerImage={setPlayerImage}
                             />
                         ) : (
-                            !intro && <Main level={level} section={section} chars={chars} setChars={setChars} skillPoints={skillPoints} gold={gold} playerHealth={playerHealth} playerHealthChange={playerHealthChange} goldChange={goldChange} skillPointsChange={skillPointsChange}/>
+                            !intro && <Main level={level} section={section} chars={chars} setChars={setChars} skillPoints={skillPoints} gold={gold} playerHealth={playerHealth} playerHealthChange={playerHealthChange} goldChange={goldChange} skillPointsChange={skillPointsChange} choices={choices} choiceGrade={choiceGrade} choiceSkill={choiceSkill} levelHigher={levelHigher} />
                         )}
                     </div>
                 </div>
@@ -147,6 +151,11 @@ const WWW = () => {
                         playerHealthChange={playerHealthChange}
                         goldChange={goldChange}
                         skillPointsChange={skillPointsChange}
+                        choices={choices}
+                        setChoices={setChoices}
+                        setChoiceGrade={setChoiceGrade}
+                        setChoiceSkill={setChoiceSkill}
+                        setLevelHigher={setLevelHigher}
                     />
                 </div>
             </div>
